@@ -1,8 +1,10 @@
 /**
- * @file nom_du_fichier.cpp
- * @brief Description du contenu du fichier.
- * @author Votre nom
- * @date Date de création du fichier
+ * @project Intellight
+ * @file main.cpp
+ * @brief Fichier principal
+ * @authors OLIVEIRA LOPES Maxime
+ *          NAJI Ines
+ * @date 16/11/2023
  */
 
 #include <iostream>
