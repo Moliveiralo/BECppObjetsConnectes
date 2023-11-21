@@ -11,8 +11,6 @@
 
 using namespace std;
 
-int main() {
-    // test
-    // blabla mon code
+int main()
     return 0;
 }
