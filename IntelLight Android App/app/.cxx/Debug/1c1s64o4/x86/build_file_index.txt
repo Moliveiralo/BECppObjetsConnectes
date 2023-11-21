@@ -1,0 +1,1 @@
+C:\Users\maxim\OneDrive - insa-toulouse.fr\INSA\Cours\4A - AE\Langage C++\BECppObjetsConnectes\IntelLight Android App\app\src\main\cpp\CMakeLists.txt
