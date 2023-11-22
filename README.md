@@ -14,5 +14,9 @@ blabla
 ### **Comment intéragir ?**
 blabla
 
-## CLASSES:
+## Classes:
 blabla
+
+## Dépendances:
+> SFML
+> TGUI
