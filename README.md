@@ -4,14 +4,15 @@ NAJI INES et OLIVEIRA LOPES Maxime - 4AE TP SE 4
 ## Concept:
 blabla le concept
 
-##➡️ **Comment compiler ?**
+## Instructions
+### **Comment compiler ?**
 blabla
 
-##➡️ **Comment exécuter ?**
+### **Comment exécuter ?**
 blabla
 
-##➡️ **Comment intéragir ?**
+### **Comment intéragir ?**
 blabla
 
-##➡️ **CLASSES:**
+## CLASSES:
 blabla
