@@ -5,4 +5,6 @@ set(CMAKE_CXX_STANDARD 23)
 
 add_executable(BECppObjetsConnectes main.cpp
         Personne.cpp
-        Personne.h)
+        Personne.h
+        Piece.cpp
+        Piece.h)
