@@ -82,6 +82,15 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/maxim/OneDrive - insa-toulouse.fr/INSA/Cours/4A - AE/Langage C++/BECppObjetsConnectes/Personne.cpp">
+			<Option target="BECppObjetsConnectes"/>
+		</Unit>
+		<Unit filename="C:/Users/maxim/OneDrive - insa-toulouse.fr/INSA/Cours/4A - AE/Langage C++/BECppObjetsConnectes/Personne.h">
+			<Option target="BECppObjetsConnectes"/>
+		</Unit>
+		<Unit filename="C:/Users/maxim/OneDrive - insa-toulouse.fr/INSA/Cours/4A - AE/Langage C++/BECppObjetsConnectes/Piece.cpp">
+			<Option target="BECppObjetsConnectes"/>
+		</Unit>
 		<Unit filename="C:/Users/maxim/OneDrive - insa-toulouse.fr/INSA/Cours/4A - AE/Langage C++/BECppObjetsConnectes/Piece.h">
 			<Option target="BECppObjetsConnectes"/>
 		</Unit>
