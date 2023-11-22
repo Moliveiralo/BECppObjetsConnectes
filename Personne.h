@@ -26,7 +26,6 @@ private:
     short id; // Identifiant de l'utilisateur -- remplacer par l'ID du tag NFC ?
     std::string username; // Nom d'utilisateur
     bool isHere; // Statut de présence de l'utilisateur dans le domicile
-//    Piece::Piece currentRoom; // Pièce dans laquelle l'utilisateur est présent
 
 
     /* Données de préférence de l'utilisateur */
@@ -44,13 +43,11 @@ public:
     short getId() const;
     std::string getUsername() const;
     bool getPresence() const;
-//    Piece::Piece getCurrentRoom() const;
 
 
     // Setters
     void setUsername(std::string u);
     void setPresence(bool p);
-//    void setCurrentRoom(Piece::Piece p);
 
 
     // Autres méthodes

@@ -38,3 +38,27 @@ Personne::Personne(std::string us_name) {
     G = 255;
     B = 255;
 }
+
+
+// Getters:
+short Personne::getId() const {
+    return id;
+}
+
+std::string Personne::getUsername() const {
+    return username;
+}
+
+bool Personne::getPresence() const {
+    return isHere;
+}
+
+
+// Setters:
+void Personne::setUsername(std::string u) {
+    username = u;
+}
+
+void Personne::setPresence(bool p) {
+    isHere = p;
+}
