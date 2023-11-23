@@ -9,10 +9,11 @@
 
 #include "Personne.h"
 
-// Initialisation de la variable de classe
+/* ---------- Initialisation de la variable de classe ---------- */
 short Personne::nbPersonnes = 0;
 
-// Constructeurs:
+
+/* ---------- Constructeurs: ---------- */
 Personne::Personne() {
     nbPersonnes++;
     id = nbPersonnes;
@@ -40,7 +41,7 @@ Personne::Personne(std::string us_name) {
 }
 
 
-// Getters:
+/* ---------- Getters: ---------- */
 short Personne::getId() const {
     return id;
 }
@@ -54,11 +55,40 @@ bool Personne::getPresence() const {
 }
 
 
-// Setters:
+/* ---------- Setters: ---------- */
 void Personne::setUsername(std::string u) {
     username = u;
 }
 
 void Personne::setPresence(bool p) {
     isHere = p;
+}
+
+void Personne::setR(short r){
+    R = r;
+}
+
+void Personne::setG(short g){
+    G = g;
+}
+
+void Personne::setB(short b){
+    B = b;
+}
+
+void Personne::setRGB(short r, short g, short b){
+    R = r;
+    G = g;
+    B = b;
+}
+
+void Personne::setLightIntensity(float i){
+    lightIntensity = i;
+}
+
+void Personne::setLightPreferences(short r, short g, short b, float i){
+    R = r;
+    G = g;
+    B = b;
+    lightIntensity = i;
 }

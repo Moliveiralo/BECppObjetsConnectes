@@ -24,7 +24,7 @@ private:
 
     /* Données générales sur l'utilisateur */
     short id; // Identifiant de l'utilisateur -- remplacer par l'ID du tag NFC ?
-    std::string username; // Nom d'utilisateur
+    std::string username; // Nom d'utilisateur ou sinon le prénom/nom de la personne
     bool isHere; // Statut de présence de l'utilisateur dans le domicile
 
 
@@ -43,14 +43,28 @@ public:
     short getId() const;
     std::string getUsername() const;
     bool getPresence() const;
+    short getR() const;
+    short getG() const;
+    short getB() const;
+    short getLightIntensity() const;
 
 
     // Setters
     void setUsername(std::string u);
     void setPresence(bool p);
+    void setR(short r);
+    void setG(short g);
+    void setB(short b);
+    void setRGB(short r, short g, short b);
+    void setLightIntensity(float i);
+    void setLightPreferences(short r, short g, short b, float i);
 
 
     // Autres méthodes
+
+
+    // Méthodes de classe
+    static short getNbPersonnes();
 
 
     // Destructeurs
