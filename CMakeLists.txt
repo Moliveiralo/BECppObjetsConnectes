@@ -9,4 +9,6 @@ add_executable(BECppObjetsConnectes main.cpp
         Personne.h
         Personne.cpp
         Appartement.h
-        Appartement.cpp)
+        Appartement.cpp
+        Visiteur.cpp
+        Visiteur.h)
