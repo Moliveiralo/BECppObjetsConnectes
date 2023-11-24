@@ -47,6 +47,7 @@ public:
     short getG() const;
     short getB() const;
     short getLightIntensity() const;
+    short * getLightPreferences() const;
 
 
     // Setters

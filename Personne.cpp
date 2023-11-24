@@ -54,6 +54,30 @@ bool Personne::getPresence() const {
     return isHere;
 }
 
+short Personne::getR() const{
+    return R;
+}
+
+short Personne::getG() const{
+    return G;
+}
+
+short Personne::getB() const{
+    return B;
+}
+
+short Personne::getLightIntensity() const{
+    return lightIntensity;
+}
+
+short * Personne::getLightPreferences() const{
+    short * tabPref = new short[3];
+    tabPref[0] = (short) ((lightIntensity/100)* (float) R);
+    tabPref[1] = (short) ((lightIntensity/100)* (float) G);
+    tabPref[2] = (short) ((lightIntensity/100)* (float) B);
+    return tabPref;
+}
+
 
 /* ---------- Setters: ---------- */
 void Personne::setUsername(std::string u) {
