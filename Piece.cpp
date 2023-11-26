@@ -35,7 +35,7 @@ short Piece::getId() const{
 void Piece::allumerLumiere (short r, short g, short b){
     // On allume la lumiere dans la piece
     ledAllumee=true;
-    // Et on définit les caracteristiques des lumieres de cette piece
+    // Et on definit les caracteristiques des lumieres de cette piece
     R=r ; G=g; B=b;
 }
 
@@ -44,4 +44,9 @@ void Piece::eteindreLumiere (){
     ledAllumee=false;
     // On remet les caracteristiques de la lumiere a 0
     R=0; G=0; B=0;
+}
+
+void Piece::changerCaracteristiques(short r, short g, short b) {
+    // On redefinit les caracteristiques des lumieres de cette piece
+    R=r ; G=g; B=b;
 }

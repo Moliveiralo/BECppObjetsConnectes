@@ -33,3 +33,25 @@ short Appartement::getNbPiece() const {
 
 
 // Autres methodes
+void Appartement::ajouterPiece(std::string nom) {
+    nbPiece++;
+    Piece nvllePiece(nom, nbPiece);
+    listePieces.push_back(nvllePiece);
+}
+
+void Appartement::retirerPiece(short pieceId) {
+    bool pieceEffacee = false;
+
+    itPiece=listePieces.begin();
+    while (not(pieceEffacee) && (itPiece!=listePieces.end())){
+        if (itPiece->getId() == pieceId){
+            pieceEffacee=true;
+            listePieces.erase(itPiece);
+        }
+    }
+    for(int i=1 ; i<pieceId && itPiece!=listePieces.end() ; i++) itPiece++;
+    listePieces.erase(itPiece);
+
+    // Si la piece n'existe pas, on lance une exception
+    if (not(pieceEffacee)) throw ERREUR_IDPIECE;
+}
