@@ -47,6 +47,7 @@ void Appartement::retirerPiece(short pieceId) {
         if (itPiece->getId() == pieceId){
             pieceEffacee=true;
             listePieces.erase(itPiece);
+            nbPiece--;
         }
     }
     for(int i=1 ; i<pieceId && itPiece!=listePieces.end() ; i++) itPiece++;
