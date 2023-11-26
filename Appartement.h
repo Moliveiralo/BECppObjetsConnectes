@@ -44,6 +44,7 @@ public :
     //Getters
     short getID() const; // Renvoie l'identifiant de l'appartement
     short getNbPiece() const; // Renvoie le nb de piece qu'il y a dans l'appartement
+    short getNbAppartements() const; // Renvoie le nb d'appartements qui ont ete crees
 
     // Autres methodes
     // Relatives à la liste de pieces
@@ -54,7 +55,6 @@ public :
     void retirerPersonne(short id);
 
     /************* Destructeur *************/
-    ~Appartement();
 };
 
 #endif //BECPPOBJETSCONNECTES_APPARTEMENT_H

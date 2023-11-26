@@ -8,9 +8,21 @@
  */
 
 #include <iostream>
+#include "Appartement.h"
 
 using namespace std;
 
 int main(){
+
+    Appartement appart1;
+    cout << "L'identifiant de l'apparement cree est : " << appart1.getID()
+    << ". Pour l'instant cet appartement a " << appart1.getNbPiece() << " pieces." << endl;
+    appart1.ajouterPiece("salon");
+    appart1.ajouterPiece("cuisine");
+    appart1.ajouterPiece("chambre");
+    cout << "Dans l'appart " << appart1.getID() << " il y a maintenant " << appart1.getNbPiece() << " pieces." << endl;
+    appart1.retirerPiece(2);
+    cout << "Dans l'appart " << appart1.getID() << " il y a maintenant " << appart1.getNbPiece() << " pieces." << endl;
+
     return 0;
 }
