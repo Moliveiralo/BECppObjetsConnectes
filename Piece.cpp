@@ -9,6 +9,7 @@
 
 #include "Piece.h"
 
+
 /************* Constructeur *************/
 Piece:: Piece(std::string nom, short id){
     this->nom=nom;
@@ -30,6 +31,25 @@ short Piece::getId() const{
     return id;
 }
 
+bool Piece::getLedAllumee() const{
+    return ledAllumee;
+}
+
+short Piece::getR() const{
+    return R;
+}
+
+short Piece::getG() const{
+    return G;
+}
+
+short Piece::getB() const{
+    return B;
+}
+
+list<Personne> Piece::getLisPersonnesPresentes() const{
+    return listePersonnesPresentes;
+}
 
 // Autres methodes
 void Piece::allumerLumiere (short r, short g, short b){
@@ -49,4 +69,27 @@ void Piece::eteindreLumiere (){
 void Piece::changerCaracteristiques(short r, short g, short b) {
     // On redefinit les caracteristiques des lumieres de cette piece
     R=r ; G=g; B=b;
+}
+
+void Piece::personneEntre(Personne nouvellePersonne){
+    // Lorsqu'une personne entre dans la piece, elle est ajoutee a la liste des personnes
+    // presentes dans la piece
+    listePersonnesPresentes.push_back(nouvellePersonne);
+}
+
+void Piece::personneSort(short personneId){
+    bool personneEffacee = false;
+
+    itPersonnesPresentes = listePersonnesPresentes.begin();
+    while (not(personneEffacee) && (itPersonnesPresentes!=listePersonnesPresentes.end())){
+        short testId = itPersonnesPresentes->getId();
+        if (testId == personneId){
+            personneEffacee=true;
+            listePersonnesPresentes.erase(itPersonnesPresentes);
+        }
+        itPersonnesPresentes++;
+    }
+
+    // Si la piece n'existe pas, on lance une exception
+    if (not(personneEffacee)) throw ERREUR_PERSONNEID;
 }
