@@ -47,6 +47,10 @@ short Piece::getB() const{
     return B;
 }
 
+short Piece::getNbPersonnesPresentes() const {
+    return nbPersonnesPresentes;
+}
+
 list<Personne> Piece::getLisPersonnesPresentes() const{
     return listePersonnesPresentes;
 }
@@ -75,6 +79,7 @@ void Piece::personneEntre(Personne nouvellePersonne){
     // Lorsqu'une personne entre dans la piece, elle est ajoutee a la liste des personnes
     // presentes dans la piece
     listePersonnesPresentes.push_back(nouvellePersonne);
+    nbPersonnesPresentes++;
 }
 
 void Piece::personneSort(short personneId){
@@ -86,6 +91,7 @@ void Piece::personneSort(short personneId){
         if (testId == personneId){
             personneEffacee=true;
             listePersonnesPresentes.erase(itPersonnesPresentes);
+            nbPersonnesPresentes--;
         }
         itPersonnesPresentes++;
     }

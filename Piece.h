@@ -30,6 +30,8 @@ private :
     bool ledAllumee;
     short R, G, B;
 
+    // Nombre de personnes presentes dans la piece
+    short nbPersonnesPresentes;
     // Liste de personnes presentes dans la pièce
     list<Personne> listePersonnesPresentes;
     list<Personne>::iterator itPersonnesPresentes;
@@ -47,6 +49,7 @@ public :
     short getR() const;
     short getG() const;
     short getB() const;
+    short getNbPersonnesPresentes() const;
     list<Personne> getLisPersonnesPresentes() const;
 
     // Autres methodes
