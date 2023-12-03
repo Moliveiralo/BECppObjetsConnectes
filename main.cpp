@@ -23,6 +23,6 @@ int main(){
     cout << "Dans l'appart " << appart1.getID() << " il y a maintenant " << appart1.getNbPiece() << " pieces." << endl;
     appart1.retirerPiece(2);
     cout << "Dans l'appart " << appart1.getID() << " il y a maintenant " << appart1.getNbPiece() << " pieces." << endl;
-
+    cout << "Test surcharge de l'operateur : " << appart1[1].getId() << endl;
     return 0;
 }

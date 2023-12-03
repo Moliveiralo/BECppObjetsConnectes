@@ -59,3 +59,24 @@ void Appartement::retirerPiece(short pieceId) {
     // Si la piece n'existe pas, on lance une exception
     if (not(pieceEffacee)) throw ERREUR_IDPIECE;
 }
+
+
+/************* Surcharge d'operateurs *************/
+// Surcharge de l'operatuer []
+// Quand on fait Appartement[id], on accede a la piece caracterise par cet id
+Piece & Appartement::operator[] (int indice){
+    bool pieceTrouvee = false;
+
+    itPiece=listePieces.begin();
+    while (not(pieceTrouvee) && (itPiece!=listePieces.end())){
+        short testId = itPiece->getId();
+        if (testId == indice){
+            pieceTrouvee=true;
+            return *itPiece;
+        }
+        itPiece++;
+    }
+
+    // Si la piece n'existe pas, on lance une exception
+    if (not(pieceTrouvee)) throw ERREUR_IDPIECE;
+}
