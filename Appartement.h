@@ -61,7 +61,7 @@ public :
     Piece & operator[] (int indice);
 
 
-            /************* Destructeur *************/
+    /************* Destructeur *************/
 
 };
 

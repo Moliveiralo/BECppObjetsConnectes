@@ -98,6 +98,12 @@
 		<Unit filename="/Users/naines/Desktop/cours INSA 4A/S1/Prog Orientee objet/BECppObjetsConnectes/Piece.h">
 			<Option target="BECppObjetsConnectes"/>
 		</Unit>
+		<Unit filename="/Users/naines/Desktop/cours INSA 4A/S1/Prog Orientee objet/BECppObjetsConnectes/Principal.cpp">
+			<Option target="BECppObjetsConnectes"/>
+		</Unit>
+		<Unit filename="/Users/naines/Desktop/cours INSA 4A/S1/Prog Orientee objet/BECppObjetsConnectes/Principal.h">
+			<Option target="BECppObjetsConnectes"/>
+		</Unit>
 		<Unit filename="/Users/naines/Desktop/cours INSA 4A/S1/Prog Orientee objet/BECppObjetsConnectes/Visiteur.cpp">
 			<Option target="BECppObjetsConnectes"/>
 		</Unit>
