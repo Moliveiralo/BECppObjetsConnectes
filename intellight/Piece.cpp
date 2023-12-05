@@ -80,7 +80,7 @@ void Piece::personneEntre(const Personne& nouvellePersonne){
     // presentes dans la piece
     listePersonnesPresentes.push_back(nouvellePersonne);
     nbPersonnesPresentes++;
-    if (nbPersonnesPresentes = 1) allumerLumiere(nouvellePersonne.getR(), nouvellePersonne.getG(), nouvellePersonne.getB());
+    if (nbPersonnesPresentes == 1) allumerLumiere(nouvellePersonne.getR(), nouvellePersonne.getG(), nouvellePersonne.getB());
 }
 
 void Piece::personneSort(short personneId){
@@ -94,6 +94,5 @@ void Piece::personneSort(short personneId){
         }
         itPersonnesPresentes++;
     }
-    if (nbPersonnesPresentes = 0) eteindreLumiere();
-    //eteindreLumiere();
+    if (nbPersonnesPresentes == 0) eteindreLumiere();
 }

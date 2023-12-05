@@ -75,27 +75,25 @@ void Piece::changerCaracteristiques(short r, short g, short b) {
     R=r ; G=g; B=b;
 }
 
-void Piece::personneEntre(Personne nouvellePersonne){
+void Piece::personneEntre(const Personne& nouvellePersonne){
     // Lorsqu'une personne entre dans la piece, elle est ajoutee a la liste des personnes
     // presentes dans la piece
     listePersonnesPresentes.push_back(nouvellePersonne);
     nbPersonnesPresentes++;
+    if (nbPersonnesPresentes == 1) allumerLumiere(nouvellePersonne.getR(), nouvellePersonne.getG(), nouvellePersonne.getB());
 }
 
 void Piece::personneSort(short personneId){
-    bool personneEffacee = false;
 
     itPersonnesPresentes = listePersonnesPresentes.begin();
-    while (not(personneEffacee) && (itPersonnesPresentes!=listePersonnesPresentes.end())){
+    while (itPersonnesPresentes!=listePersonnesPresentes.end()){
         short testId = itPersonnesPresentes->getId();
         if (testId == personneId){
-            personneEffacee=true;
             listePersonnesPresentes.erase(itPersonnesPresentes);
             nbPersonnesPresentes--;
         }
         itPersonnesPresentes++;
     }
-
-    // Si la piece n'existe pas, on lance une exception
-    if (not(personneEffacee)) throw ERREUR_PERSONNEID;
+    if (nbPersonnesPresentes == 0) eteindreLumiere();
+    //eteindreLumiere();
 }
