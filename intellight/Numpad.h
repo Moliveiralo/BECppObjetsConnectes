@@ -1,0 +1,14 @@
+//
+// Created by maxim on 06/12/2023.
+//
+
+#ifndef BECPPOBJETSCONNECTES_NUMPAD_H
+#define BECPPOBJETSCONNECTES_NUMPAD_H
+
+
+class Numpad {
+
+};
+
+
+#endif //BECPPOBJETSCONNECTES_NUMPAD_H

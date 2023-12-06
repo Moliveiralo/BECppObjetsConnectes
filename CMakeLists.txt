@@ -12,5 +12,7 @@ add_executable(BECppObjetsConnectes main.cpp
         ./intellight/Piece.cpp
         ./intellight/Principal.h
         ./intellight/Principal.cpp
+        ./intellight/Numpad.cpp
+        ./intellight/Numpad.h
 )
 

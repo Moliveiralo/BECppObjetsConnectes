@@ -8,9 +8,23 @@
  */
 
 #include <iostream>
-#include "Appartement.h"
+#include "./Intellight/Appartement.h"
 
 using namespace std;
+
+/* Organisation des pins:
+ * NUMPAD N°1 (Pièce principale):
+ * D1 20
+ * D2 19
+ *
+ * NUMPAD N°2 (Chambre):
+ * D5 5
+ * D6 6
+ *
+ * LEDS:
+ * D7 7
+ * D8 8
+ */
 
 int main(){
 
