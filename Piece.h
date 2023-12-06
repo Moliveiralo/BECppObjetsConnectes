@@ -56,8 +56,9 @@ public :
     void allumerLumiere (short r, short g, short b); // Allume la lumiere avec certaines caracteristiques
     void eteindreLumiere (); // Etient la lumiere et remet a 0 ses caracteristiques
     void changerCaracteristiques (short r, short g, short b); // Permet de changer les caracteristiques de la lumiere
-    void personneEntre(Personne nouvellePersonne); // Rajoute une personne dans la liste des personnes presentes dans la piece
+    void personneEntre(const Personne& nouvellePersonne); // Rajoute une personne dans la liste des personnes presentes dans la piece
     void personneSort(short personneId); // Retire une personne de la liste des personnes presentes dans la piece
+
 
     /************* Destructeur *************/
 };

@@ -20,6 +20,10 @@ Personne::Personne() {
     username = "NULL";
     isHere = false;
 
+    // Par défaut, la personne n'est ni un visiteur, ni un administrateur
+    admin = false;
+    visiteur = false;
+
     // Par défaut, on règle la lumière sur une lumière blanche à 100% d'intensité
     lightIntensity = 100.0;
     R = 255;
@@ -32,6 +36,27 @@ Personne::Personne(const String& us_name) {
     id = nbPersonnes;
     username = us_name;
     isHere = false;
+
+    // Par défaut, la personne n'est ni un visiteur, ni un administrateur
+    admin = false;
+    visiteur = false;
+
+    // Par défaut, on règle la lumière sur une lumière blanche à 100% d'intensité
+    lightIntensity = 100.0;
+    R = 255;
+    G = 255;
+    B = 255;
+}
+
+Personne::Personne(bool estAdmin, bool estVisiteur) {
+    nbPersonnes++;
+    id = nbPersonnes;
+    username = "NULL";
+    isHere = false;
+
+    // On definit les caracteristiques de priorites de l'utilisateur
+    admin = estAdmin;
+    visiteur = estVisiteur;
 
     // Par défaut, on règle la lumière sur une lumière blanche à 100% d'intensité
     lightIntensity = 100.0;
@@ -76,6 +101,14 @@ short * Personne::getLightPreferences() const{
     tabPref[1] = (short) ((lightIntensity/100)* (float) G);
     tabPref[2] = (short) ((lightIntensity/100)* (float) B);
     return tabPref;
+}
+
+bool Personne::getEstAdmin() const {
+    return admin;
+}
+
+bool Personne::getEstVisiteur() const {
+    return visiteur;
 }
 
 

@@ -81,6 +81,7 @@ void Piece::personneEntre(const Personne& nouvellePersonne){
     listePersonnesPresentes.push_back(nouvellePersonne);
     nbPersonnesPresentes++;
     if (nbPersonnesPresentes == 1) allumerLumiere(nouvellePersonne.getR(), nouvellePersonne.getG(), nouvellePersonne.getB());
+    elsif (nouvellePersonne==instance)
 }
 
 void Piece::personneSort(short personneId){

@@ -80,34 +80,34 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/naines/Desktop/cours INSA 4A/S1/Prog Orientee objet/BECppObjetsConnectes/Appartement.cpp">
-			<Option target="BECppObjetsConnectes"/>
-		</Unit>
-		<Unit filename="/Users/naines/Desktop/cours INSA 4A/S1/Prog Orientee objet/BECppObjetsConnectes/Appartement.h">
-			<Option target="BECppObjetsConnectes"/>
-		</Unit>
-		<Unit filename="/Users/naines/Desktop/cours INSA 4A/S1/Prog Orientee objet/BECppObjetsConnectes/Personne.cpp">
-			<Option target="BECppObjetsConnectes"/>
-		</Unit>
-		<Unit filename="/Users/naines/Desktop/cours INSA 4A/S1/Prog Orientee objet/BECppObjetsConnectes/Personne.h">
-			<Option target="BECppObjetsConnectes"/>
-		</Unit>
-		<Unit filename="/Users/naines/Desktop/cours INSA 4A/S1/Prog Orientee objet/BECppObjetsConnectes/Piece.cpp">
-			<Option target="BECppObjetsConnectes"/>
-		</Unit>
-		<Unit filename="/Users/naines/Desktop/cours INSA 4A/S1/Prog Orientee objet/BECppObjetsConnectes/Piece.h">
-			<Option target="BECppObjetsConnectes"/>
-		</Unit>
-		<Unit filename="/Users/naines/Desktop/cours INSA 4A/S1/Prog Orientee objet/BECppObjetsConnectes/Principal.cpp">
-			<Option target="BECppObjetsConnectes"/>
-		</Unit>
-		<Unit filename="/Users/naines/Desktop/cours INSA 4A/S1/Prog Orientee objet/BECppObjetsConnectes/Principal.h">
-			<Option target="BECppObjetsConnectes"/>
-		</Unit>
 		<Unit filename="/Users/naines/Desktop/cours INSA 4A/S1/Prog Orientee objet/BECppObjetsConnectes/Visiteur.cpp">
 			<Option target="BECppObjetsConnectes"/>
 		</Unit>
 		<Unit filename="/Users/naines/Desktop/cours INSA 4A/S1/Prog Orientee objet/BECppObjetsConnectes/Visiteur.h">
+			<Option target="BECppObjetsConnectes"/>
+		</Unit>
+		<Unit filename="/Users/naines/Desktop/cours INSA 4A/S1/Prog Orientee objet/BECppObjetsConnectes/intellight/Appartement.cpp">
+			<Option target="BECppObjetsConnectes"/>
+		</Unit>
+		<Unit filename="/Users/naines/Desktop/cours INSA 4A/S1/Prog Orientee objet/BECppObjetsConnectes/intellight/Appartement.h">
+			<Option target="BECppObjetsConnectes"/>
+		</Unit>
+		<Unit filename="/Users/naines/Desktop/cours INSA 4A/S1/Prog Orientee objet/BECppObjetsConnectes/intellight/Personne.cpp">
+			<Option target="BECppObjetsConnectes"/>
+		</Unit>
+		<Unit filename="/Users/naines/Desktop/cours INSA 4A/S1/Prog Orientee objet/BECppObjetsConnectes/intellight/Personne.h">
+			<Option target="BECppObjetsConnectes"/>
+		</Unit>
+		<Unit filename="/Users/naines/Desktop/cours INSA 4A/S1/Prog Orientee objet/BECppObjetsConnectes/intellight/Piece.cpp">
+			<Option target="BECppObjetsConnectes"/>
+		</Unit>
+		<Unit filename="/Users/naines/Desktop/cours INSA 4A/S1/Prog Orientee objet/BECppObjetsConnectes/intellight/Piece.h">
+			<Option target="BECppObjetsConnectes"/>
+		</Unit>
+		<Unit filename="/Users/naines/Desktop/cours INSA 4A/S1/Prog Orientee objet/BECppObjetsConnectes/intellight/Principal.cpp">
+			<Option target="BECppObjetsConnectes"/>
+		</Unit>
+		<Unit filename="/Users/naines/Desktop/cours INSA 4A/S1/Prog Orientee objet/BECppObjetsConnectes/intellight/Principal.h">
 			<Option target="BECppObjetsConnectes"/>
 		</Unit>
 		<Unit filename="/Users/naines/Desktop/cours INSA 4A/S1/Prog Orientee objet/BECppObjetsConnectes/main.cpp">

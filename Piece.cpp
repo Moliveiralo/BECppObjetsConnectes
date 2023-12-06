@@ -8,6 +8,7 @@
  */
 
 #include "Piece.h"
+#include "Visiteur.h"
 
 
 /************* Constructeur *************/
@@ -81,6 +82,7 @@ void Piece::personneEntre(const Personne& nouvellePersonne){
     listePersonnesPresentes.push_back(nouvellePersonne);
     nbPersonnesPresentes++;
     if (nbPersonnesPresentes == 1) allumerLumiere(nouvellePersonne.getR(), nouvellePersonne.getG(), nouvellePersonne.getB());
+    if (instanceof<Visiteur>(&nouvellePersonne));
 }
 
 void Piece::personneSort(short personneId){

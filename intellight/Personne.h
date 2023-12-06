@@ -10,7 +10,7 @@
 #ifndef BECPPOBJETSCONNECTES_PERSONNE_H
 #define BECPPOBJETSCONNECTES_PERSONNE_H
 
-//#include "Piece.h"
+
 #include <Arduino.h>
 
 // (Idée de classe dérivée: personne prioritaire?)
@@ -23,9 +23,11 @@ private:
 
     /* Données générales sur l'utilisateur */
     short id; // Identifiant de l'utilisateur -- remplacer par l'ID du tag NFC ?
+    short code; // Code de l'utilisateur a rentrer sur le pin pad
     String username; // Nom d'utilisateur ou sinon le prénom/nom de la personne
     bool isHere; // Statut de présence de l'utilisateur dans le domicile
-
+    bool admin; // Vrai si la personne est administrateur
+    bool visiteur; // Vrai si la personne est visiteur
 
     /* Données de préférence de l'utilisateur */
     float lightIntensity;
@@ -35,6 +37,7 @@ public:
     /* Constructeurs */
     Personne();
     Personne(const String& us_name);
+    Personne(bool estAdmin, bool estVisiteur);
 
 
     /* Méthodes */
@@ -47,6 +50,8 @@ public:
     short getB() const;
     short getLightIntensity() const;
     short * getLightPreferences() const;
+    bool getEstAdmin() const;
+    bool getEstVisiteur() const;
 
 
     // Setters
