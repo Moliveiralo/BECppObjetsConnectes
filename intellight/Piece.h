@@ -25,11 +25,13 @@ private :
     short id;
 
     // Etat de la lumiere dans la piece
+    // La LED associee a la piece est la LED numero id-1
     bool ledAllumee;
     short R, G, B;
 
     // Nombre de personnes presentes dans la piece
     short nbPersonnesPresentes = 0;
+    bool personnePrioPresente = false;
     // Liste de personnes presentes dans la pièce
     list<Personne> listePersonnesPresentes;
     list<Personne>::iterator itPersonnesPresentes;

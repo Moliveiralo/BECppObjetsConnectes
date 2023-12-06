@@ -80,8 +80,19 @@ void Piece::personneEntre(const Personne& nouvellePersonne){
     // presentes dans la piece
     listePersonnesPresentes.push_back(nouvellePersonne);
     nbPersonnesPresentes++;
+
+    // Si la personne est seule la lumiere de la piece s'allume avec ses preference
     if (nbPersonnesPresentes == 1) allumerLumiere(nouvellePersonne.getR(), nouvellePersonne.getG(), nouvellePersonne.getB());
-    elsif (nouvellePersonne==instance)
+
+    // Si la personne n'est pas seule mais qu'elle est prioritaire,
+    // la lumiere prend les caracteristiques de cette personne
+    else if (nouvellePersonne.getEstAdmin()) changerCaracteristiques(nouvellePersonne.getR(), nouvellePersonne.getG(), nouvellePersonne.getB());
+
+    // Si la personne n'est pas prioritaire et n'est pas un visiteur,
+    // on regarde si il
+    else if (!(nouvellePersonne.getEstVisiteur())){
+        itPersonnesPresentes = listePersonnesPresentes.begin();
+    }
 }
 
 void Piece::personneSort(short personneId){
