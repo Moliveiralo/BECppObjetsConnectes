@@ -4,8 +4,6 @@ project(BECppObjetsConnectes)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(BECppObjetsConnectes main.cpp
-        Visiteur.cpp
-        Visiteur.h
         ./intellight/Appartement.h
         ./intellight/Appartement.cpp
         ./intellight/Personne.h

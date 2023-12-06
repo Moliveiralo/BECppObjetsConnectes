@@ -82,16 +82,16 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/maxim/OneDrive - insa-toulouse.fr/INSA/Cours/4A - AE/Langage C++/BECppObjetsConnectes/Visiteur.cpp">
-			<Option target="BECppObjetsConnectes"/>
-		</Unit>
-		<Unit filename="C:/Users/maxim/OneDrive - insa-toulouse.fr/INSA/Cours/4A - AE/Langage C++/BECppObjetsConnectes/Visiteur.h">
-			<Option target="BECppObjetsConnectes"/>
-		</Unit>
 		<Unit filename="C:/Users/maxim/OneDrive - insa-toulouse.fr/INSA/Cours/4A - AE/Langage C++/BECppObjetsConnectes/intellight/Appartement.cpp">
 			<Option target="BECppObjetsConnectes"/>
 		</Unit>
 		<Unit filename="C:/Users/maxim/OneDrive - insa-toulouse.fr/INSA/Cours/4A - AE/Langage C++/BECppObjetsConnectes/intellight/Appartement.h">
+			<Option target="BECppObjetsConnectes"/>
+		</Unit>
+		<Unit filename="C:/Users/maxim/OneDrive - insa-toulouse.fr/INSA/Cours/4A - AE/Langage C++/BECppObjetsConnectes/intellight/Numpad.cpp">
+			<Option target="BECppObjetsConnectes"/>
+		</Unit>
+		<Unit filename="C:/Users/maxim/OneDrive - insa-toulouse.fr/INSA/Cours/4A - AE/Langage C++/BECppObjetsConnectes/intellight/Numpad.h">
 			<Option target="BECppObjetsConnectes"/>
 		</Unit>
 		<Unit filename="C:/Users/maxim/OneDrive - insa-toulouse.fr/INSA/Cours/4A - AE/Langage C++/BECppObjetsConnectes/intellight/Personne.cpp">
