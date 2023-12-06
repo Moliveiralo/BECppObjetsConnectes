@@ -1,6 +1,9 @@
 # **IntelLight**
 NAJI INES et OLIVEIRA LOPES Maxime - 4AE TP SE 4
 
+![image](https://github.com/Moliveiralo/BECppObjetsConnectes/assets/133717115/c3eb05d3-3a6d-4b9f-8f24-57b10fc4de82)
+
+
 ## Concept:
 IntelLight est un nouveau concept de lumière intelligente. Chaque habitant (ou invité) du domicile peut disposer d'un tag NFC sur lui (sur son porteclé, dans sa poche, ...) permettant de l'identifier. Depuis une interface graphique (qui pourrait si on voulait pousser l'idée jusqu'au bout être déclinée en application android avec les lecteurs de puces NFC intégrés au téléphone), ce dernier peut définir ses préférences en termes de lumière: couleur, intensité, heures pendant lesquelles les lumières sont allumées...
 
