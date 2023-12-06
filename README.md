@@ -23,7 +23,7 @@ blabla
 --> **NUMPAD 1**: D1 D2
 --> **NUMPAD 2**: D5 D6
 2) Brancher les leds comme suit:
---> LEDS RGB en série: D7 D8
+--> **LEDS RGB en série**: D7 D8
 
 ![image](https://github.com/Moliveiralo/BECppObjetsConnectes/assets/133717115/3703471c-14ca-402b-867a-5df25019ad17)
 
