@@ -9,24 +9,20 @@
 
 #include <iostream>
 #include "Appartement.h"
-#include "Personne.h"
-#include "Piece.h"
-#include "Visiteur.h"
 
 using namespace std;
 
 int main(){
-    Personne personne1("Maxime");
-    Personne personne2;
 
-    personne2.setUsername("Ines");
-
-    personne1.setLightPreferences(100, 214, 137, 56);
-    short * tabPref = personne1.getLightPreferences();
-    short * tabPref2 = personne2.getLightPreferences();
-
-    cout << "Les preferences de " << personne1.getUsername() << " sont : " << tabPref[0] << " " << tabPref[1] << " " << tabPref[2] << endl;
-    cout << "Les preferences de " << personne2.getUsername() << " sont : " << tabPref2[0] << " " << tabPref2[1] << " " << tabPref2[2] << endl;
-
+    Appartement appart1;
+    cout << "L'identifiant de l'apparement cree est : " << appart1.getID()
+    << ". Pour l'instant cet appartement a " << appart1.getNbPiece() << " pieces." << endl;
+    appart1.ajouterPiece("salon");
+    appart1.ajouterPiece("cuisine");
+    appart1.ajouterPiece("chambre");
+    cout << "Dans l'appart " << appart1.getID() << " il y a maintenant " << appart1.getNbPiece() << " pieces." << endl;
+    appart1.retirerPiece(2);
+    cout << "Dans l'appart " << appart1.getID() << " il y a maintenant " << appart1.getNbPiece() << " pieces." << endl;
+    cout << "Test surcharge de l'operateur : " << appart1[1].getId() << endl;
     return 0;
 }
