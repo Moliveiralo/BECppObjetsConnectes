@@ -28,5 +28,4 @@ blabla
 blabla
 
 ## Dépendances:
-- SFML (www.sfml-dev.org/download.php)
-- TGUI (www.tgui.eu/download/)
+Aucune pour le moment.
