@@ -131,4 +131,5 @@ void Piece::personneSort(const Personne& personneSortante){
     // Sinon, s'il n'y a pas de personne prioritaire, on utilise la methode
     // personne entre avec la premiere personne de la liste
     else if (!personnePrioPresente) personneEntre(*listePersonnesPresentes.begin());
+    nbPersonnesPresentes--;
 }
