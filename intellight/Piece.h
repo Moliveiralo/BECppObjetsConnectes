@@ -32,6 +32,7 @@ private :
     // Nombre de personnes presentes dans la piece
     short nbPersonnesPresentes = 0;
     bool personnePrioPresente = false;
+
     // Liste de personnes presentes dans la pièce
     list<Personne> listePersonnesPresentes;
     list<Personne>::iterator itPersonnesPresentes;
@@ -57,7 +58,7 @@ public :
     void eteindreLumiere (); // Etient la lumiere et remet a 0 ses caracteristiques
     void changerCaracteristiques (short r, short g, short b); // Permet de changer les caracteristiques de la lumiere
     void personneEntre(const Personne& nouvellePersonne); // Rajoute une personne dans la liste des personnes presentes dans la piece
-    void personneSort(short personneId); // Retire une personne de la liste des personnes presentes dans la piece
+    void personneSort(const Personne& personneSortante); // Retire une personne de la liste des personnes presentes dans la piece
 
     /************* Destructeur *************/
 };
