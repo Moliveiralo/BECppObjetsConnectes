@@ -52,12 +52,8 @@ private:
     // Creation d'une personne qui peut gerer les lumieres de l'appartement
     Personne habitant1;
 
-    // Création des UART émulés pour les numpads
-    SoftwareSerial mySerial(RX1,TX1);
-    SoftwareSerial mySerial2(RX2, TX2);
-
-    Numpad numpad1;
-    Numpad numpad2;
+    SoftwareSerial * mySerial, * mySerial2;
+    Numpad * numpad1,* numpad2;
 
 
 public:

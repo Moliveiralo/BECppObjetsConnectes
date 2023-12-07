@@ -19,13 +19,17 @@
 Principal::Principal():nbLeds(2), leds(13,15,nbLeds){}
 
 void Principal::setUp(){
+    // Création des UART émulés pour les numpads
+    mySerial = new SoftwareSerial(RX1,TX1);
+    mySerial2= new SoftwareSerial(RX2, TX2);
+
     // Création des numpads
-    numpad1(&mySerial);
-    numpad2(&mySerial2);
+    numpad1 = new Numpad(mySerial);
+    numpad2 = new Numpad(mySerial2);
 
     // Fixage du baud rate des UART émulés
-    numpad1.getSerial()->begin(9600);
-    numpad2.getSerial()->begin(9600);
+    numpad1->getSerial()->begin(9600);
+    numpad2->getSerial()->begin(9600);
 
     // Fixage du baud rate de l'UART réel de l'ESP8266
     Serial.begin(9600);
@@ -35,7 +39,7 @@ void Principal::setUp(){
 
     // Par défaut, on éteint toutes les lumières.
     leds.setColorRGB(0, 0, 0, 0);
-    leds.setColorRGB(0, 0, 0, 0);
+    leds.setColorRGB(1, 0, 0, 0);
 
     // Creation des pieces dans l'appartement
     appt.ajouterPiece("Salon");
@@ -43,8 +47,8 @@ void Principal::setUp(){
 }
 
 void Principal::loop(){
-  while (numpad1.getSerial()->available()){
-    switch(numpad1.getData()) {
+  while (numpad1->getSerial()->available()){
+    switch(numpad1->getData()) {
                 case 0xE1 : // TOUCHE 1
                     leds.setColorRGB(1, 0, 255, 255);
                     break;
@@ -86,8 +90,8 @@ void Principal::loop(){
     }
   }
 
-  while (numpad2.getSerial()->available()){
-    switch(numpad2.getData()) {
+  while (numpad2->getSerial()->available()){
+    switch(numpad2->getData()) {
                 case 0xE1 : // TOUCHE 1
                     leds.setColorRGB(0, 0, 255, 255);
                     break;
