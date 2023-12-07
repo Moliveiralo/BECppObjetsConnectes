@@ -10,11 +10,7 @@
 #ifndef BECPPOBJETSCONNECTES_PRINCIPAL_H
 #define BECPPOBJETSCONNECTES_PRINCIPAL_H
 
-#include <Arduino.h>
-#include <ChainableLED.h>
 #include "Appartement.h"
-#include "Piece.h"
-#include "Personne.h"
 #include "SoftwareSerial.h"
 #include "Numpad.h"
 

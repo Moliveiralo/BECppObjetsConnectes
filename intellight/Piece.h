@@ -11,6 +11,7 @@
 #define BECPPOBJETSCONNECTES_PIECE_H
 
 #include <Arduino.h>
+#include <ChainableLED.h>
 #include <list>
 #include "Personne.h"
 
