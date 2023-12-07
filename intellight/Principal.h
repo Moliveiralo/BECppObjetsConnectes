@@ -47,15 +47,23 @@ private:
     ChainableLED leds;
 
     // Attribut relatif à l'appartement
-    Appartement appartTest;
+    Appartement appt;
 
     // Creation d'une personne qui peut gerer les lumieres de l'appartement
-    Personne habitant;
+    Personne habitant1;
+
+    // Création des UART émulés pour les numpads
+    SoftwareSerial mySerial(RX1,TX1);
+    SoftwareSerial mySerial2(RX2, TX2);
+
+    Numpad numpad1;
+    Numpad numpad2;
 
 
 public:
+    /************* Constructeurs *************/
+    Principal();
 
-  Principal();
     /************* Methodes *************/
     void setUp(); // Fonction de set up du .ino de l'ide arduino
     void loop(); // Fonction loop du .ino de l'ide arduino

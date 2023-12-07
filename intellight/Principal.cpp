@@ -9,10 +9,6 @@
 
 #include "Principal.h"
 
-    // // Creation des pieces dans l'appartement
-    // appartTest.ajouterPiece("Salon");
-    // appartTest.ajouterPiece("Chambre");
-
     // // Definition des parametres de preference des personnes
     // habitant.setRGB(255,0,255);
 
@@ -21,20 +17,29 @@
 
 
 Principal::Principal():nbLeds(2), leds(13,15,nbLeds){}
-SoftwareSerial mySerial(RX1,TX1);
-SoftwareSerial mySerial2(RX2, TX2);
-Numpad numpad1(&mySerial);
-Numpad numpad2(&mySerial2);
 
 void Principal::setUp(){
-  numpad1.getSerial()->begin(9600);
-  numpad2.getSerial()->begin(9600);
+    // Création des numpads
+    numpad1(&mySerial);
+    numpad2(&mySerial2);
 
-  leds.init();
+    // Fixage du baud rate des UART émulés
+    numpad1.getSerial()->begin(9600);
+    numpad2.getSerial()->begin(9600);
 
-  // Par défaut, on éteint toutes les lumières.
-  leds.setColorRGB(0, 0, 0, 0);
-  leds.setColorRGB(0, 0, 0, 0);
+    // Fixage du baud rate de l'UART réel de l'ESP8266
+    Serial.begin(9600);
+
+    // Initialisation des LEDs RGB chainables
+    leds.init();
+
+    // Par défaut, on éteint toutes les lumières.
+    leds.setColorRGB(0, 0, 0, 0);
+    leds.setColorRGB(0, 0, 0, 0);
+
+    // Creation des pieces dans l'appartement
+    appt.ajouterPiece("Salon");
+    appt.ajouterPiece("Chambre");
 }
 
 void Principal::loop(){
@@ -78,7 +83,7 @@ void Principal::loop(){
                     break;
                 default:
                     break;
-            }
+    }
   }
 
   while (numpad2.getSerial()->available()){
@@ -121,7 +126,7 @@ void Principal::loop(){
                     break;
                 default:
                     break;
-            }
+    }
   }
 }
 
