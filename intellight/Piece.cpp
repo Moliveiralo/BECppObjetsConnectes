@@ -56,30 +56,30 @@ list<Personne> Piece::getLisPersonnesPresentes() const{
 }
 
 // Autres methodes
-void Piece::allumerLumiere (short r, short g, short b, ChainableLED leds){
+void Piece::allumerLumiere (short r, short g, short b, ChainableLED *leds){
     // On allume la lumiere dans la piece
     ledAllumee=true;
     // Et on definit les caracteristiques des lumieres de cette piece
     R=r ; G=g; B=b;
-    leds.setColorRGB(id-1, R, G, B);
+    leds->setColorRGB(id-1, R, G, B);
 }
 
-void Piece::eteindreLumiere (ChainableLED leds){
+void Piece::eteindreLumiere (ChainableLED *leds){
     // On eteint la lumiere de la piece
     ledAllumee=false;
     // On remet les caracteristiques de la lumiere a 0
     R=0; G=0; B=0;
-    leds.setColorRGB(id-1, R, G, B);
+    leds->setColorRGB(id-1, R, G, B);
 }
 
-void Piece::changerCaracteristiques(short r, short g, short b, ChainableLED leds) {
+void Piece::changerCaracteristiques(short r, short g, short b, ChainableLED *leds) {
     // On redefinit les caracteristiques des lumieres de cette piece
     R=r ; G=g; B=b;
     // Et on les applique a la lumiere
-    leds.setColorRGB(id-1, R, G, B);
+    leds->setColorRGB(id-1, R, G, B);
 }
 
-void Piece::personneEntre(const Personne& nouvellePersonne, ChainableLED leds){
+void Piece::personneEntre(const Personne& nouvellePersonne, ChainableLED *leds){
     // Lorsqu'une personne entre dans la piece, elle est ajoutee a la liste des personnes
     // presentes dans la piece
     listePersonnesPresentes.push_back(nouvellePersonne);
@@ -87,12 +87,12 @@ void Piece::personneEntre(const Personne& nouvellePersonne, ChainableLED leds){
 
     // Si la personne est seule la lumiere de la piece s'allume avec ses preference
     if (nbPersonnesPresentes == 1)
-        allumerLumiere(nouvellePersonne.getR(), nouvellePersonne.getG(), nouvellePersonne.getB(), ChainableLED leds);
+        allumerLumiere(nouvellePersonne.getR(), nouvellePersonne.getG(), nouvellePersonne.getB(), leds);
 
     // Si la personne n'est pas seule mais qu'elle est prioritaire,
     // la lumiere prend les caracteristiques de cette personne
     else if (nouvellePersonne.getEstAdmin())
-        changerCaracteristiques(nouvellePersonne.getR(), nouvellePersonne.getG(), nouvellePersonne.getB(), ChainableLED leds);
+        changerCaracteristiques(nouvellePersonne.getR(), nouvellePersonne.getG(), nouvellePersonne.getB(), leds);
 
     // Si la personne n'est pas prioritaire et n'est pas un visiteur,
     // et s'il n'y a pas deja une personne prioritaire dans la piece,
@@ -108,11 +108,11 @@ void Piece::personneEntre(const Personne& nouvellePersonne, ChainableLED leds){
         }
 
         if (idMin == nouvellePersonne.getId())
-            changerCaracteristiques(nouvellePersonne.getR(), nouvellePersonne.getG(), nouvellePersonne.getB(), ChainableLED leds);
+            changerCaracteristiques(nouvellePersonne.getR(), nouvellePersonne.getG(), nouvellePersonne.getB(), leds);
     }
 }
 
-void Piece::personneSort(const Personne& personneSortante){
+void Piece::personneSort(const Personne& personneSortante, ChainableLED *leds){
     // On regarde si cette personne etait la personne prioritaire
     // et si c'est le cas on remet le booleen a false
     if (personneSortante.getEstAdmin()) personnePrioPresente = false;
@@ -129,10 +129,10 @@ void Piece::personneSort(const Personne& personneSortante){
     }
 
     // Si la personne etait seule dans la piece on eteint la lumiere
-    if (nbPersonnesPresentes == 0) eteindreLumiere(ChainableLED leds);
+    if (nbPersonnesPresentes == 0) eteindreLumiere(leds);
 
     // Sinon, s'il n'y a pas de personne prioritaire, on utilise la methode
     // personne entre avec la premiere personne de la liste
-    else if (!personnePrioPresente) personneEntre(*listePersonnesPresentes.begin());
+    else if (!personnePrioPresente) personneEntre(*listePersonnesPresentes.begin(), leds);
     nbPersonnesPresentes--;
 }
