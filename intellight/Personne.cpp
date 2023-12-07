@@ -20,6 +20,9 @@ Personne::Personne() {
     username = "NULL";
     isHere = false;
 
+    // On définit le code de l'utilisateur sur les numpads
+    code = -1;
+
     // Par défaut, la personne n'est ni un visiteur, ni un administrateur
     admin = false;
     visiteur = false;
@@ -36,6 +39,9 @@ Personne::Personne(const String& us_name) {
     id = nbPersonnes;
     username = us_name;
     isHere = false;
+
+    // On définit le code de l'utilisateur sur les numpads
+    code = -1;
 
     // Par défaut, la personne n'est ni un visiteur, ni un administrateur
     admin = false;
@@ -54,6 +60,9 @@ Personne::Personne(bool estAdmin, bool estVisiteur) {
     username = "NULL";
     isHere = false;
 
+    // On définit le code de l'utilisateur sur les numpads
+    code = -1;
+
     // On définit les caractéristiques de priorités de l'utilisateur
     admin = estAdmin;
     visiteur = estVisiteur;
@@ -70,6 +79,29 @@ Personne::Personne(const String& us_name, bool estAdmin, bool estVisiteur){
     id = nbPersonnes;
     username = us_name;
     isHere = false;
+
+    // On définit le code de l'utilisateur sur les numpads
+    code = -1;
+
+    // On définit les caractéristiques de priorités de l'utilisateur
+    admin = estAdmin;
+    visiteur = estVisiteur;
+
+    // Par défaut, on règle la lumière sur une lumière blanche à 100% d'intensité
+    lightIntensity = 100.0;
+    R = 255;
+    G = 255;
+    B = 255;
+}
+
+Personne::Personne(const String& us_name, bool estAdmin, bool estVisiteur, short c){
+    nbPersonnes++;
+    id = nbPersonnes;
+    username = us_name;
+    isHere = false;
+
+    // On définit le code de l'utilisateur sur les numpads
+    code = c;
 
     // On définit les caractéristiques de priorités de l'utilisateur
     admin = estAdmin;
@@ -165,4 +197,14 @@ void Personne::setLightPreferences(short r, short g, short b, float i){
     G = g;
     B = b;
     lightIntensity = i;
+}
+
+void Personne::setCode(short c){
+    code = c;
+}
+
+
+/* ---------- Autres méthodes: ---------- */
+bool Personne::verifierCode(short c){
+    return (c == code);
 }

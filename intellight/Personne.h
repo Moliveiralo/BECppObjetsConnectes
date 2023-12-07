@@ -22,8 +22,8 @@ private:
 
 
     /* Données générales sur l'utilisateur */
-    short id; // Identifiant de l'utilisateur -- remplacer par l'ID du tag NFC ?
-    short code; // Code de l'utilisateur a rentrer sur le pin pad
+    short id; // Identifiant de l'utilisateur
+    short code; // Code de l'utilisateur à rentrer sur le numpad
     String username; // Nom d'utilisateur ou sinon le prénom/nom de la personne
     bool isHere; // Statut de présence de l'utilisateur dans le domicile
     bool admin; // Vrai si la personne est administrateur
@@ -39,6 +39,7 @@ public:
     Personne(const String& us_name);
     Personne(bool estAdmin, bool estVisiteur);
     Personne(const String& us_name, bool estAdmin, bool estVisiteur);
+    Personne(const String& us_name, bool estAdmin, bool estVisiteur, short c);
 
 
     /* Méthodes */
@@ -64,9 +65,11 @@ public:
     void setRGB(short r, short g, short b);
     void setLightIntensity(float i);
     void setLightPreferences(short r, short g, short b, float i);
+    void setCode(short c);
 
 
     // Autres méthodes
+    bool verifierCode(short c);
 
 
     // Méthodes de classe

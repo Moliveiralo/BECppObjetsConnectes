@@ -12,9 +12,6 @@
     // // Definition des parametres de preference des personnes
     // habitant.setRGB(255,0,255);
 
-    // // Initialisation des capteurs Arduino
-    // leds.init(); // Initialisation des leds
-
 
 Principal::Principal():nbLeds(2), leds(13,15,nbLeds){}
 
