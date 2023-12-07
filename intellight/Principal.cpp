@@ -13,7 +13,7 @@
     // habitant.setRGB(255,0,255);
 
 
-Principal::Principal():nbLeds(2), leds(13,15,nbLeds){}
+Principal::Principal():nbLeds(2), leds(DATA_PIN,CLOCK_PIN,nbLeds){}
 
 void Principal::setUp(){
     // Création des UART émulés pour les numpads
