@@ -55,11 +55,11 @@ public :
     list<Personne> getLisPersonnesPresentes() const;
 
     // Autres methodes
-    void allumerLumiere (short r, short g, short b); // Allume la lumiere avec certaines caracteristiques
-    void eteindreLumiere (); // Etient la lumiere et remet a 0 ses caracteristiques
-    void changerCaracteristiques (short r, short g, short b); // Permet de changer les caracteristiques de la lumiere
-    void personneEntre(const Personne& nouvellePersonne); // Rajoute une personne dans la liste des personnes presentes dans la piece
-    void personneSort(const Personne& personneSortante); // Retire une personne de la liste des personnes presentes dans la piece
+    void allumerLumiere (short r, short g, short b, ChainableLED leds); // Allume la lumiere avec certaines caracteristiques
+    void eteindreLumiere (ChainableLED leds); // Etient la lumiere et remet a 0 ses caracteristiques
+    void changerCaracteristiques (short r, short g, short b, ChainableLED leds); // Permet de changer les caracteristiques de la lumiere
+    void personneEntre(const Personne& nouvellePersonne, ChainableLED leds); // Rajoute une personne dans la liste des personnes presentes dans la piece
+    void personneSort(const Personne& personneSortante, ChainableLED leds); // Retire une personne de la liste des personnes presentes dans la piece
 
     /************* Destructeur *************/
 };
