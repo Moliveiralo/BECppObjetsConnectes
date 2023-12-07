@@ -54,7 +54,24 @@ Personne::Personne(bool estAdmin, bool estVisiteur) {
     username = "NULL";
     isHere = false;
 
-    // On definit les caracteristiques de priorites de l'utilisateur
+    // On définit les caractéristiques de priorités de l'utilisateur
+    admin = estAdmin;
+    visiteur = estVisiteur;
+
+    // Par défaut, on règle la lumière sur une lumière blanche à 100% d'intensité
+    lightIntensity = 100.0;
+    R = 255;
+    G = 255;
+    B = 255;
+}
+
+Personne::Personne(const String& us_name, bool estAdmin, bool estVisiteur){
+    nbPersonnes++;
+    id = nbPersonnes;
+    username = us_name;
+    isHere = false;
+
+    // On définit les caractéristiques de priorités de l'utilisateur
     admin = estAdmin;
     visiteur = estVisiteur;
 

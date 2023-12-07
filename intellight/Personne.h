@@ -38,6 +38,7 @@ public:
     Personne();
     Personne(const String& us_name);
     Personne(bool estAdmin, bool estVisiteur);
+    Personne(const String& us_name, bool estAdmin, bool estVisiteur);
 
 
     /* Méthodes */
