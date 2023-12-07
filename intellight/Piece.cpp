@@ -61,6 +61,7 @@ void Piece::allumerLumiere (short r, short g, short b){
     ledAllumee=true;
     // Et on definit les caracteristiques des lumieres de cette piece
     R=r ; G=g; B=b;
+    leds.setColorRGB(id-1, R, G, B);
 }
 
 void Piece::eteindreLumiere (){
@@ -68,11 +69,14 @@ void Piece::eteindreLumiere (){
     ledAllumee=false;
     // On remet les caracteristiques de la lumiere a 0
     R=0; G=0; B=0;
+    leds.setColorRGB(id-1, R, G, B);
 }
 
 void Piece::changerCaracteristiques(short r, short g, short b) {
     // On redefinit les caracteristiques des lumieres de cette piece
     R=r ; G=g; B=b;
+    // Et on les applique a la lumiere
+    leds.setColorRGB(id-1, R, G, B);
 }
 
 void Piece::personneEntre(const Personne& nouvellePersonne){
@@ -89,22 +93,42 @@ void Piece::personneEntre(const Personne& nouvellePersonne){
     else if (nouvellePersonne.getEstAdmin()) changerCaracteristiques(nouvellePersonne.getR(), nouvellePersonne.getG(), nouvellePersonne.getB());
 
     // Si la personne n'est pas prioritaire et n'est pas un visiteur,
-    // on regarde si il
-    else if (!(nouvellePersonne.getEstVisiteur())){
+    // et s'il n'y a pas deja une personne prioritaire dans la piece,
+    // on cherche quel est le plus petit id puisque la personne
+    // la plus prio est celle avec le plus petit id
+    else if (!(nouvellePersonne.getEstVisiteur()) && !(personnePrioPresente)){
+        short idMin;
+        idMin = nouvellePersonne.getId();
         itPersonnesPresentes = listePersonnesPresentes.begin();
+
+        while (itPersonnesPresentes != listePersonnesPresentes.end()){
+            if (itPersonnesPresentes->getId() < idMin) idMin = itPersonnesPresentes->getId();
+        }
+
+        if (idMin == nouvellePersonne.getId()) changerCaracteristiques(nouvellePersonne.getR(), nouvellePersonne.getG(), nouvellePersonne.getB())
     }
 }
 
-void Piece::personneSort(short personneId){
+void Piece::personneSort(const Personne& personneSortante){
+    // On regarde si cette personne etait la personne prioritaire
+    // et si c'est le cas on remet le booleen a false
+    if (personneSortante.getEstAdmin()) personnePrioPresente = false;
 
+    // On efface ensuite la personne
     itPersonnesPresentes = listePersonnesPresentes.begin();
     while (itPersonnesPresentes!=listePersonnesPresentes.end()){
         short testId = itPersonnesPresentes->getId();
-        if (testId == personneId){
+        if (testId == personneSortante.getId()){
             listePersonnesPresentes.erase(itPersonnesPresentes);
             nbPersonnesPresentes--;
         }
         itPersonnesPresentes++;
     }
+
+    // Si la personne etait seule dans la piece on eteint la lumiere
     if (nbPersonnesPresentes == 0) eteindreLumiere();
+
+    // Sinon, s'il n'y a pas de personne prioritaire, on utilise la methode
+    // personne entre avec la premiere personne de la liste
+    else if (!personnePrioPresente) personneEntre(*listePersonnesPresentes.begin());
 }
