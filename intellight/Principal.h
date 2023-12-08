@@ -45,8 +45,15 @@ private:
     // Attribut relatif à l'appartement
     Appartement appt;
 
-    // Creation d'une personne qui peut gerer les lumieres de l'appartement
+    // Creation des personnes qui peuvent gerer les lumieres de l'appartement
+    // Deux habitants classiques 
     Personne habitant1;
+    Personne habitant2; 
+    // Un habitant prioritaire
+    Personne habitantPrio; 
+    // Un visiteur 
+    Personne visiteur; 
+
 
     SoftwareSerial * mySerial, * mySerial2;
     Numpad * numpad1,* numpad2;

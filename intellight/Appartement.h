@@ -26,10 +26,6 @@ private :
     list<Piece>  listePieces;
     list<Piece>::iterator itPiece;
 
-    // Liste de personnes presente dans l'appartement
-    list<Personne> listePersonnesPresentes;
-    list<Piece>::iterator itPersonnesPresentes;
-
     /*Variable de classe*/
     static short nbAppartement;
 
@@ -50,8 +46,6 @@ public :
     void ajouterPiece (const String&  nom); // Permet de creer une nouvelle piece dans un appartement
     void retirerPiece (short pieceId); // Retire une piece de l'appartement
 
-    void ajouterPersonnePresente ();
-    void retirerPersonne(short id);
 
 
     /************* Surcharge d'operateurs *************/

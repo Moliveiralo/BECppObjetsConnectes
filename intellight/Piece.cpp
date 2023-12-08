@@ -91,48 +91,52 @@ void Piece::personneEntre(const Personne& nouvellePersonne, ChainableLED *leds){
 
     // Si la personne n'est pas seule mais qu'elle est prioritaire,
     // la lumiere prend les caracteristiques de cette personne
-    else if (nouvellePersonne.getEstAdmin())
-        changerCaracteristiques(nouvellePersonne.getR(), nouvellePersonne.getG(), nouvellePersonne.getB(), leds);
+    else if (nouvellePersonne.getEstAdmin()){
+      changerCaracteristiques(nouvellePersonne.getR(), nouvellePersonne.getG(), nouvellePersonne.getB(), leds);
+      personnePrioPresente = true; 
+    }
+        
 
     // Si la personne n'est pas prioritaire et n'est pas un visiteur,
     // et s'il n'y a pas deja une personne prioritaire dans la piece,
-    // on cherche quel est le plus petit id puisque la personne
-    // la plus prio est celle avec le plus petit id
+    // on change les caracteriques de la lumiere avec les preferences de la premiere personne 
     else if (!(nouvellePersonne.getEstVisiteur()) && !(personnePrioPresente)){
-        short idMin;
-        idMin = nouvellePersonne.getId();
-        itPersonnesPresentes = listePersonnesPresentes.begin();
-
-        while (itPersonnesPresentes != listePersonnesPresentes.end()){
-            if (itPersonnesPresentes->getId() < idMin) idMin = itPersonnesPresentes->getId();
-        }
-
-        if (idMin == nouvellePersonne.getId())
-            changerCaracteristiques(nouvellePersonne.getR(), nouvellePersonne.getG(), nouvellePersonne.getB(), leds);
+        itPersonnesPresentes = listePersonnesPresentes.begin();    
+        changerCaracteristiques(itPersonnesPresentes->getR(), itPersonnesPresentes->getG(), itPersonnesPresentes->getB(), leds);
+        // GERER QUAND LA PREMIERE PERSONNE DE LA LISTE EST UN VISITEUR
     }
 }
 
 void Piece::personneSort(const Personne& personneSortante, ChainableLED *leds){
+
     // On regarde si cette personne etait la personne prioritaire
     // et si c'est le cas on remet le booleen a false
     if (personneSortante.getEstAdmin()) personnePrioPresente = false;
 
     // On efface ensuite la personne
     itPersonnesPresentes = listePersonnesPresentes.begin();
-    while (itPersonnesPresentes!=listePersonnesPresentes.end()){
-        short testId = itPersonnesPresentes->getId();
-        if (testId == personneSortante.getId()){
-            listePersonnesPresentes.erase(itPersonnesPresentes);
-            nbPersonnesPresentes--;
-        }
-        itPersonnesPresentes++;
-    }
 
+    while (itPersonnesPresentes != listePersonnesPresentes.end()) {
+     short testId = itPersonnesPresentes->getId();
+
+      if (testId == personneSortante.getId()) {
+          itPersonnesPresentes = listePersonnesPresentes.erase(itPersonnesPresentes);
+          nbPersonnesPresentes--;
+      } else itPersonnesPresentes++;
+    }
+    
+    Serial.println(nbPersonnesPresentes);
     // Si la personne etait seule dans la piece on eteint la lumiere
-    if (nbPersonnesPresentes == 0) eteindreLumiere(leds);
+    if (nbPersonnesPresentes == 0) {eteindreLumiere(leds); Serial.println("Lumieres eteintes");}
 
     // Sinon, s'il n'y a pas de personne prioritaire, on utilise la methode
     // personne entre avec la premiere personne de la liste
-    else if (!personnePrioPresente) personneEntre(*listePersonnesPresentes.begin(), leds);
-    nbPersonnesPresentes--;
+    else if (!personnePrioPresente) {
+      Serial.println("Personne prio non presente");
+
+      // On met les caracteriques de la lumiere avec les preferences de la premiere personne de la liste 
+      itPersonnesPresentes = listePersonnesPresentes.begin();    
+      changerCaracteristiques(itPersonnesPresentes->getR(), itPersonnesPresentes->getG(), itPersonnesPresentes->getB(), leds);
+      // GERER QUAND LA PREMIERE PERSONNE DE LA LISTE EST UN VISITEUR
+    }
 }
