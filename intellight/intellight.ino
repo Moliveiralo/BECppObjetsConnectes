@@ -11,7 +11,7 @@
 Principal monPrincipal;
 
 void setup() {
-  monPrincipal.setUp();
+  monPrincipal.setup();
 
 }
 

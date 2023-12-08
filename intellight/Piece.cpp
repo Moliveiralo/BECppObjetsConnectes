@@ -51,7 +51,7 @@ short Piece::getNbPersonnesPresentes() const {
     return nbPersonnesPresentes;
 }
 
-list<Personne> Piece::getLisPersonnesPresentes() const{
+list<Personne*> Piece::getLisPersonnesPresentes() const{
     return listePersonnesPresentes;
 }
 
@@ -79,7 +79,7 @@ void Piece::changerCaracteristiques(short r, short g, short b, ChainableLED *led
     leds->setColorRGB(id-1, R, G, B);
 }
 
-void Piece::personneEntre(const Personne& nouvellePersonne, ChainableLED *leds){
+void Piece::personneEntre(Personne* nouvellePersonne, ChainableLED *leds){
     // Lorsqu'une personne entre dans la piece, elle est ajoutee a la liste des personnes
     // presentes dans la piece
     listePersonnesPresentes.push_back(nouvellePersonne);
@@ -87,12 +87,12 @@ void Piece::personneEntre(const Personne& nouvellePersonne, ChainableLED *leds){
 
     // Si la personne est seule la lumiere de la piece s'allume avec ses preference
     if (nbPersonnesPresentes == 1)
-        allumerLumiere(nouvellePersonne.getR(), nouvellePersonne.getG(), nouvellePersonne.getB(), leds);
+        allumerLumiere(nouvellePersonne->getR(), nouvellePersonne->getG(), nouvellePersonne->getB(), leds);
 
     // Si la personne n'est pas seule mais qu'elle est prioritaire,
     // la lumiere prend les caracteristiques de cette personne
-    else if (nouvellePersonne.getEstAdmin()){
-      changerCaracteristiques(nouvellePersonne.getR(), nouvellePersonne.getG(), nouvellePersonne.getB(), leds);
+    else if (nouvellePersonne->getEstAdmin()){
+      changerCaracteristiques(nouvellePersonne->getR(), nouvellePersonne->getG(), nouvellePersonne->getB(), leds);
       personnePrioPresente = true; 
     }
         
@@ -100,26 +100,26 @@ void Piece::personneEntre(const Personne& nouvellePersonne, ChainableLED *leds){
     // Si la personne n'est pas prioritaire et n'est pas un visiteur,
     // et s'il n'y a pas deja une personne prioritaire dans la piece,
     // on change les caracteriques de la lumiere avec les preferences de la premiere personne 
-    else if (!(nouvellePersonne.getEstVisiteur()) && !(personnePrioPresente)){
+    else if (!(nouvellePersonne->getEstVisiteur()) && !(personnePrioPresente)){
         itPersonnesPresentes = listePersonnesPresentes.begin();    
-        changerCaracteristiques(itPersonnesPresentes->getR(), itPersonnesPresentes->getG(), itPersonnesPresentes->getB(), leds);
+        changerCaracteristiques((*itPersonnesPresentes)->getR(), (*itPersonnesPresentes)->getG(), (*itPersonnesPresentes)->getB(), leds);
         // GERER QUAND LA PREMIERE PERSONNE DE LA LISTE EST UN VISITEUR
     }
 }
 
-void Piece::personneSort(const Personne& personneSortante, ChainableLED *leds){
+void Piece::personneSort(Personne* personneSortante, ChainableLED *leds){
 
     // On regarde si cette personne etait la personne prioritaire
     // et si c'est le cas on remet le booleen a false
-    if (personneSortante.getEstAdmin()) personnePrioPresente = false;
+    if (personneSortante->getEstAdmin()) personnePrioPresente = false;
 
     // On efface ensuite la personne
     itPersonnesPresentes = listePersonnesPresentes.begin();
 
     while (itPersonnesPresentes != listePersonnesPresentes.end()) {
-     short testId = itPersonnesPresentes->getId();
+     short testId = (*itPersonnesPresentes)->getId();
 
-      if (testId == personneSortante.getId()) {
+      if (testId == personneSortante->getId()) {
           itPersonnesPresentes = listePersonnesPresentes.erase(itPersonnesPresentes);
           nbPersonnesPresentes--;
       } else itPersonnesPresentes++;
@@ -136,7 +136,7 @@ void Piece::personneSort(const Personne& personneSortante, ChainableLED *leds){
 
       // On met les caracteriques de la lumiere avec les preferences de la premiere personne de la liste 
       itPersonnesPresentes = listePersonnesPresentes.begin();    
-      changerCaracteristiques(itPersonnesPresentes->getR(), itPersonnesPresentes->getG(), itPersonnesPresentes->getB(), leds);
+      changerCaracteristiques((*itPersonnesPresentes)->getR(), (*itPersonnesPresentes)->getG(), (*itPersonnesPresentes)->getB(), leds);
       // GERER QUAND LA PREMIERE PERSONNE DE LA LISTE EST UN VISITEUR
     }
 }
