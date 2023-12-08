@@ -13,7 +13,7 @@
     // habitant.setRGB(255,0,255);
 
 
-Principal::Principal():nbLeds(2), leds(DATA_PIN,CLOCK_PIN,nbLeds){}
+Principal::Principal():nbLeds(2), leds(DATA_PIN,CLOCK_PIN,nbLeds), habitant1(true, false), habitant2(false,false){}
 
 void Principal::setUp(){
     // Création des UART émulés pour les numpads
@@ -35,15 +35,21 @@ void Principal::setUp(){
     leds.init();
 
     // Par défaut, on éteint toutes les lumières.
-    leds.setColorRGB(0, 0, 0, 0);
-    leds.setColorRGB(1, 0, 0, 0);
+    //leds.setColorRGB(0, 0, 0, 0);
+    //leds.setColorRGB(1, 0, 0, 0);
 
     // Creation des pieces dans l'appartement
     appt.ajouterPiece("Salon");
     appt.ajouterPiece("Chambre");
+
+    //Configuration des preferences des habitants 
+    habitant1.setRGB(100, 100, 0);
+    habitant2.setRGB(0, 100, 100);
 }
 
 void Principal::loop(){
+  
+  /*
   while (numpad1->getSerial()->available()){
     switch(numpad1->getData()) {
                 case 0xE1 : // TOUCHE 1
@@ -128,6 +134,26 @@ void Principal::loop(){
                 default:
                     break;
     }
-  }
+  }*/
+
+
+  appt[1].personneEntre(habitant2, &leds); 
+  appt[2].personneEntre(habitant1, &leds);
+  delay(1000); 
+  appt[1].personneEntre(habitant1, &leds); 
+  delay(1000); 
+  appt[1].eteindreLumiere(&leds); 
+  Serial.println("test1");
+  appt[1].personneSort(habitant1, &leds); 
+  Serial.println("test2");
+  appt[2].personneEntre(habitant1, &leds);
+  delay(1000); 
+  appt[1].personneSort(habitant2, &leds); 
+  appt[2].personneEntre(habitant2, &leds); 
+  appt[1].personneSort(habitant2, &leds); 
+  delay(1000);
+  appt[2].personneSort(habitant1, &leds); 
+  appt[2].personneSort(habitant2, &leds); 
+  delay(100);
 }
 
