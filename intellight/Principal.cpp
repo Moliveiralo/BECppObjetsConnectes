@@ -9,13 +9,10 @@
 
 #include "Principal.h"
 
-    // // Definition des parametres de preference des personnes
-    // habitant.setRGB(255,0,255);
-
 
 Principal::Principal():nbLeds(2), leds(DATA_PIN,CLOCK_PIN,nbLeds){}
 
-void Principal::setUp(){
+void Principal::setup(){
     // Création des UART émulés pour les numpads
     mySerial = new SoftwareSerial(RX1,TX1);
     mySerial2= new SoftwareSerial(RX2, TX2);
@@ -44,90 +41,16 @@ void Principal::setUp(){
 }
 
 void Principal::loop(){
-  while (numpad1->getSerial()->available()){
-    switch(numpad1->getData()) {
-                case 0xE1 : // TOUCHE 1
-                    leds.setColorRGB(1, 0, 255, 255);
-                    break;
-                case 0xE2 : // TOUCHE 2
-                    leds.setColorRGB(1, 255, 0, 255);
-                    break;
-                case 0xE3 : // TOUCHE 3
-                    leds.setColorRGB(1, 255, 255, 0);
-                    break;
-                case 0xE4 : // TOUCHE 4
-                    leds.setColorRGB(1, 255, 0, 0);
-                    break;
-                case 0xE5 : // TOUCHE 5
-                    leds.setColorRGB(1, 0, 0, 255);
-                    break;
-                case 0xE6 : // TOUCHE 6
-                    leds.setColorRGB(1, 0, 255, 0);
-                    break;
-                case 0xE7 : // TOUCHE 7
-                    leds.setColorRGB(1, 128, 128, 255);
-                    break;
-                case 0xE8 : // TOUCHE 8
-                    leds.setColorRGB(1, 255, 255, 128);
-                    break;
-                case 0xE9 : // TOUCHE 9
-                    leds.setColorRGB(1, 128, 255, 255);
-                    break;
-                case 0xEA : // TOUCHE *
-                    leds.setColorRGB(1, 255, 128, 255);
-                    break;
-                case 0xEB : // TOUCHE 0
-                    leds.setColorRGB(1, 128, 0, 255);
-                    break;
-                case 0xEC : // TOUCHE #
-                    leds.setColorRGB(1, 255, 128, 0);
-                    break;
-                default:
-                    break;
-    }
-  }
+    while (numpad1->getSerial()->available()){
+        switch(numpad1->getTouche()){
 
-  while (numpad2->getSerial()->available()){
-    switch(numpad2->getData()) {
-                case 0xE1 : // TOUCHE 1
-                    leds.setColorRGB(0, 0, 255, 255);
-                    break;
-                case 0xE2 : // TOUCHE 2
-                    leds.setColorRGB(0, 255, 0, 255);
-                    break;
-                case 0xE3 : // TOUCHE 3
-                    leds.setColorRGB(0, 255, 255, 0);
-                    break;
-                case 0xE4 : // TOUCHE 4
-                    leds.setColorRGB(0, 255, 0, 0);
-                    break;
-                case 0xE5 : // TOUCHE 5
-                    leds.setColorRGB(0, 0, 0, 255);
-                    break;
-                case 0xE6 : // TOUCHE 6
-                    leds.setColorRGB(0, 0, 255, 0);
-                    break;
-                case 0xE7 : // TOUCHE 7
-                    leds.setColorRGB(0, 128, 128, 255);
-                    break;
-                case 0xE8 : // TOUCHE 8
-                    leds.setColorRGB(0, 255, 255, 128);
-                    break;
-                case 0xE9 : // TOUCHE 9
-                    leds.setColorRGB(0, 128, 255, 255);
-                    break;
-                case 0xEA : // TOUCHE *
-                    leds.setColorRGB(0, 255, 128, 255);
-                    break;
-                case 0xEB : // TOUCHE 0
-                    leds.setColorRGB(0, 128, 0, 255);
-                    break;
-                case 0xEC : // TOUCHE #
-                    leds.setColorRGB(0, 255, 128, 0);
-                    break;
-                default:
-                    break;
+        }
     }
-  }
+
+    while (numpad2->getSerial()->available()){
+        switch(numpad2->getTouche()){
+
+        }
+    }
 }
 

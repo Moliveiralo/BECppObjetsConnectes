@@ -57,7 +57,7 @@ public:
     Principal();
 
     /************* Methodes *************/
-    void setUp(); // Fonction de set up du .ino de l'ide arduino
+    void setup(); // Fonction de set up du .ino de l'ide arduino
     void loop(); // Fonction loop du .ino de l'ide arduino
 };
 
