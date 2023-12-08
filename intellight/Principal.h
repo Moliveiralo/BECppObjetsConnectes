@@ -46,8 +46,13 @@ private:
     Appartement appt;
 
     // Creation des personnes qui peuvent gerer les lumieres de l'appartement
+    // Deux habitants classiques 
     Personne habitant1;
     Personne habitant2; 
+    // Un habitant prioritaire
+    Personne habitantPrio; 
+    // Un visiteur 
+    Personne visiteur; 
 
 
     SoftwareSerial * mySerial, * mySerial2;

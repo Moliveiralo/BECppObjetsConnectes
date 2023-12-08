@@ -101,10 +101,9 @@ void Piece::personneEntre(const Personne& nouvellePersonne, ChainableLED *leds){
     // et s'il n'y a pas deja une personne prioritaire dans la piece,
     // on change les caracteriques de la lumiere avec les preferences de la premiere personne 
     else if (!(nouvellePersonne.getEstVisiteur()) && !(personnePrioPresente)){
-        short idMin;
-        idMin = nouvellePersonne.getId();
         itPersonnesPresentes = listePersonnesPresentes.begin();    
         changerCaracteristiques(itPersonnesPresentes->getR(), itPersonnesPresentes->getG(), itPersonnesPresentes->getB(), leds);
+        // GERER QUAND LA PREMIERE PERSONNE DE LA LISTE EST UN VISITEUR
     }
 }
 
@@ -134,7 +133,10 @@ void Piece::personneSort(const Personne& personneSortante, ChainableLED *leds){
     // personne entre avec la premiere personne de la liste
     else if (!personnePrioPresente) {
       Serial.println("Personne prio non presente");
-      personneEntre(*listePersonnesPresentes.begin(), leds);
-      nbPersonnesPresentes--;
+
+      // On met les caracteriques de la lumiere avec les preferences de la premiere personne de la liste 
+      itPersonnesPresentes = listePersonnesPresentes.begin();    
+      changerCaracteristiques(itPersonnesPresentes->getR(), itPersonnesPresentes->getG(), itPersonnesPresentes->getB(), leds);
+      // GERER QUAND LA PREMIERE PERSONNE DE LA LISTE EST UN VISITEUR
     }
 }

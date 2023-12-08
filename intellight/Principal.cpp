@@ -13,7 +13,7 @@
     // habitant.setRGB(255,0,255);
 
 
-Principal::Principal():nbLeds(2), leds(DATA_PIN,CLOCK_PIN,nbLeds), habitant1(true, false), habitant2(false,false){}
+Principal::Principal():nbLeds(2), leds(DATA_PIN,CLOCK_PIN,nbLeds), habitant1(false, false), habitant2(false,false), habitantPrio(true,false), visiteur(false,true){}
 
 void Principal::setUp(){
     // Création des UART émulés pour les numpads
@@ -45,6 +45,8 @@ void Principal::setUp(){
     //Configuration des preferences des habitants 
     habitant1.setRGB(100, 100, 0);
     habitant2.setRGB(0, 100, 100);
+    habitant2.setRGB(100, 0, 100);
+    visiteur.setRGB(100, 100, 100);
 }
 
 void Principal::loop(){
@@ -136,24 +138,23 @@ void Principal::loop(){
     }
   }*/
 
-
-  appt[1].personneEntre(habitant2, &leds); 
-  appt[2].personneEntre(habitant1, &leds);
-  delay(1000); 
+  Serial.println("Habitant 1 entre dans piece 1");
   appt[1].personneEntre(habitant1, &leds); 
-  delay(1000); 
-  appt[1].eteindreLumiere(&leds); 
-  Serial.println("test1");
+  delay(5000); 
+
+  Serial.println("Habitant 2 entre dans piece 1");
+  appt[1].personneEntre(habitant2, &leds); 
+  delay(5000); 
+
+  Serial.println("Visiteur entre dans piece 2 et habitantPrio entre dans piece1");
+  appt[2].personneEntre(visiteur, &leds); 
+  appt[1].personneEntre(habitantPrio, &leds); 
+  delay(5000); 
+  Serial.println("Habitant 1 sort");
   appt[1].personneSort(habitant1, &leds); 
-  Serial.println("test2");
-  appt[2].personneEntre(habitant1, &leds);
-  delay(1000); 
+  delay(5000); 
+  Serial.println("Habitant 2 sort");
   appt[1].personneSort(habitant2, &leds); 
-  appt[2].personneEntre(habitant2, &leds); 
-  appt[1].personneSort(habitant2, &leds); 
-  delay(1000);
-  appt[2].personneSort(habitant1, &leds); 
-  appt[2].personneSort(habitant2, &leds); 
-  delay(100);
+  delay(10000);
 }
 
