@@ -14,6 +14,7 @@
 #include <ChainableLED.h>
 #include <list>
 #include "Personne.h"
+#include "Numpad.h"
 
 
 using namespace std;
@@ -38,9 +39,12 @@ private :
     list<Personne*> listePersonnesPresentes;
     list<Personne*>::iterator itPersonnesPresentes;
 
+    // Numpad asocié à la pièce
+    Numpad * numpad;
+
 public :
     /************* Constructeur *************/
-    Piece(const String& nom, short id);
+    Piece(const String& nom, short id, Numpad * npad);
 
 
     /************* Methodes *************/
@@ -53,6 +57,7 @@ public :
     short getB() const;
     short getNbPersonnesPresentes() const;
     list<Personne*> getLisPersonnesPresentes() const;
+    Numpad * getNumpad();
 
     // Autres methodes
     void allumerLumiere (short r, short g, short b, ChainableLED *leds); // Allume la lumiere avec certaines caracteristiques

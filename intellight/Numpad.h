@@ -22,7 +22,7 @@ private:
 
 
     /* Méthodes */
-    void updateData(); // Permet d'effectuer une lecture sur le numpad et de mettre à jour data.
+    void updateData() const; // Permet d'effectuer une lecture sur le numpad et de mettre à jour data.
 
 
 public:
@@ -32,9 +32,9 @@ public:
 
     /* Méthodes */
     // Getters
-    uint8_t getData(); // Permet d'obtenir l'attribut data de manière non lisible par un humain.
-    char getTouche(); // Permet d'obtenir de manière lisible par un humain la touche sur laquelle l'utilisateur a appuyé.
-    short getCode(); // Permet d'obtenir de manière lisible par un humain une suite de 4 digits tapés sur le numpad.
+    uint8_t getData() const; // Permet d'obtenir l'attribut data de manière non lisible par un humain.
+    char getTouche() const; // Permet d'obtenir de manière lisible par un humain la touche sur laquelle l'utilisateur a appuyé.
+    short getCode() const; // Permet d'obtenir de manière lisible par un humain une suite de 4 digits tapés sur le numpad.
     SoftwareSerial * getSerial(); // Permet d'accéder à l'UART associé au numpad
 
     // Destructeurs

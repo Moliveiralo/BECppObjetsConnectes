@@ -13,12 +13,12 @@ Numpad::Numpad(SoftwareSerial * s){
   mySerial = s;
 }
 
-uint8_t Numpad::getData() {
+uint8_t Numpad::getData() const {
   updateData();
   return data;
 }
 
-char Numpad::getTouche(){
+char Numpad::getTouche() const{
   while (mySerial->available()){
     switch(getData()) {
                 case 0xE1 : // TOUCHE 1
@@ -52,7 +52,7 @@ char Numpad::getTouche(){
   return '-';
 }
 
-short Numpad::getCode(){
+short Numpad::getCode() const{
   int nbDigits = 0;
   short * listeDigits = new short[4];
 
@@ -81,6 +81,6 @@ SoftwareSerial * Numpad::getSerial(){
   return mySerial;
 }
 
-void Numpad::updateData() {
+void Numpad::updateData() const {
   data = mySerial->read();
 }

@@ -11,7 +11,7 @@
 
 
 /************* Constructeur *************/
-Piece:: Piece(const String& nom, short id){
+Piece:: Piece(const String& nom, short id, Numpad * npad){
     this->nom=nom;
     this->id=id;
 
@@ -19,6 +19,9 @@ Piece:: Piece(const String& nom, short id){
     // et les caracteristiques de sa lumiere sont a 0
     ledAllumee=false;
     R=0; G=0; B=0;
+
+    // Chaque pièce est associée à un numpad
+    numpad = npad;
 }
 
 /************* Methodes *************/
@@ -139,4 +142,8 @@ void Piece::personneSort(Personne* personneSortante, ChainableLED *leds){
       changerCaracteristiques((*itPersonnesPresentes)->getR(), (*itPersonnesPresentes)->getG(), (*itPersonnesPresentes)->getB(), leds);
       // GERER QUAND LA PREMIERE PERSONNE DE LA LISTE EST UN VISITEUR
     }
+}
+
+Numpad *Piece::getNumpad() {
+    return numpad;
 }
