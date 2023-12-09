@@ -5,12 +5,19 @@
 #include "Numpad.h"
 
 Numpad::Numpad() {
-  data = 0;
-  mySerial = nullptr;
+    data = 0;
+    mySerial = nullptr;
+    code = new short[4];
+    nbDigits = 0;
+    nbEtoiles = 0;
 }
 
 Numpad::Numpad(SoftwareSerial * s){
-  mySerial = s;
+    mySerial = s;
+    data = 0;
+    code = new short[4];
+    nbDigits = 0;
+    nbEtoiles = 0;
 }
 
 uint8_t Numpad::getData() const {
@@ -53,28 +60,18 @@ char Numpad::getTouche() const{
 }
 
 short Numpad::getCode() const{
-  int nbDigits = 0;
-  short * listeDigits = new short[4];
-
-  // Tant que le code n'est pas complet
-  while (nbDigits != 4){
-    char touche = getTouche();
-    switch (touche){
-      // Si la touche tapée n'est pas un nombre, on ne fait rien et on attend une nouvelle entrée
-      case '*' :
-      case '#' :
-      case '-' :
-        break;
-
-      // Dans tous les autres cas, la touche appuyée est un nombre. On l'ajoute donc à la liste.
-      default:
-        listeDigits[nbDigits] = (short) touche;
-        nbDigits++;
-        break;
+    if (nbDigits == 4){
+        return (code[0]*1000 + code[1]*100 + code[2]*10 + code[3]);
+    } else {
+        return -1;
     }
-  }
+}
 
-  return (listeDigits[0]*1000 + listeDigits[1]*100 + listeDigits[2]*10 + listeDigits[3]);
+short Numpad::getNbDigits() const {
+    return nbDigits;
+}
+short Numpad::getNbEtoiles() const {
+    return nbEtoiles;
 }
 
 SoftwareSerial * Numpad::getSerial(){
@@ -83,4 +80,19 @@ SoftwareSerial * Numpad::getSerial(){
 
 void Numpad::updateData() const {
   data = mySerial->read();
+}
+
+void Numpad::addDigitToCode(short digit){
+    if (nbDigits != 4){
+        code[nbDigits] = digit;
+        nbDigits++;
+    }
+}
+
+void Numpad::resetNbEtoiles(){
+    nbEtoiles=0;
+}
+
+void Numpad::incrNbEtoiles(){
+    nbEtoiles++;
 }

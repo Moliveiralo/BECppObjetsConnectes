@@ -58,6 +58,13 @@ private:
     SoftwareSerial * mySerial, * mySerial2;
     Numpad * numpad1,* numpad2;
 
+    short * codeNumpad1, * codeNumpad2;
+
+    short * nbDigits;
+
+    boolean up;
+    float hue;
+
 
 public:
     /************* Constructeurs *************/

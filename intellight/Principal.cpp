@@ -38,18 +38,54 @@ void Principal::setup(){
     // Creation des pieces dans l'appartement avec leur numpad associé
     appt.ajouterPiece("Salon", numpad1);
     appt.ajouterPiece("Chambre", numpad2);
+
+    up = true;
+    hue = 0.0;
 }
 
+
 void Principal::loop(){
-    while (numpad1->getSerial()->available()){
-        switch(numpad1->getTouche()){
+    // On vérifie pour chaque pièce de l'appartement
+    for(int i=0; i<appt.getNbPiece(); i++){
 
-        }
-    }
+        // Tant que le numpad est disponible
+        while(appt[i].getNumpad()->getSerial()->available()){
 
-    while (numpad2->getSerial()->available()){
-        switch(numpad2->getTouche()){
+            // On récupère la touche qui est appuyée sur le numpad
+            char touche = appt[i].getNumpad()->getTouche();
 
+            switch(touche){
+                case '*': // Si la touche appuyée est étoile, alors on incrémente le nombre de fois ou étoiles a été tapé
+                    appt[i].getNumpad()->incrNbEtoiles();
+
+                    // Si la personne a fait 4 fois étoile, on lance l'easter egg. Celui-ci s'arrête quand la personne réappuie sur étoile.
+                    while (appt[i].getNumpad()->getNbEtoiles() == 4){
+                        if (appt[i].getNumpad()->getTouche() == '*') {
+                            appt[i].getNumpad()->incrNbEtoiles();
+                        }
+                        leds.setColorHSL(i, hue, 1.0, 0.5);
+                        delay(50);
+
+                        if (up) {
+                            hue += 0.025;
+                        } else {
+                            hue -= 0.025;
+                        }
+                        if (hue>=1.0 && up) {
+                            up = false;
+                        } else if (hue<=0.0 && !up) {
+                            up = true;
+                        }
+                    }
+                    break;
+                case '#':
+                    break;
+                default:
+                    if (appt[i].getNumpad()->getNbDigits() != 4){
+                        appt[i].getNumpad()->addDigitToCode((short) touche);
+                    }
+                    break;
+            }
         }
     }
 }
