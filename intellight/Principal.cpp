@@ -79,6 +79,11 @@ void Principal::loop(){
                     }
                     break;
                 case '#':
+                    if (appt[i].getNumpad()->getNbDigits() == 4){
+
+                    } else {
+                        appt[i].getNumpad()->resetCode();
+                    }
                     break;
                 default:
                     if (appt[i].getNumpad()->getNbDigits() != 4){

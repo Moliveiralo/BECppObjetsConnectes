@@ -96,3 +96,9 @@ void Numpad::resetNbEtoiles(){
 void Numpad::incrNbEtoiles(){
     nbEtoiles++;
 }
+
+void Numpad::resetCode(){
+    nbDigits = 0;
+    delete code;
+    code = new short[4];
+}

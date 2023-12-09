@@ -46,6 +46,7 @@ public:
     void addDigitToCode(short digit);
     void resetNbEtoiles();
     void incrNbEtoiles();
+    void resetCode();
 
     // Destructeurs
     ~Numpad() = default; // Destructeur par défaut pour le moment -- A MODIFIER POUR SUPPRIMER L'UART
