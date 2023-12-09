@@ -36,9 +36,9 @@ short Appartement::getNbAppartements() const {
 }
 
 // Autres methodes
-void Appartement::ajouterPiece(const String& nom) {
+void Appartement::ajouterPiece(const String& nom, Numpad * npad) {
     nbPiece++;
-    Piece nvllePiece(nom, nbPiece);
+    Piece nvllePiece(nom, nbPiece, npad);
     listePieces.push_back(nvllePiece);
 }
 

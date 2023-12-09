@@ -43,7 +43,7 @@ public :
 
     // Autres methodes
     // Relatives à la liste de pieces
-    void ajouterPiece (const String&  nom); // Permet de creer une nouvelle piece dans un appartement
+    void ajouterPiece(const String& nom, Numpad * npad); // Permet de creer une nouvelle piece dans un appartement
     void retirerPiece (short pieceId); // Retire une piece de l'appartement
 
 

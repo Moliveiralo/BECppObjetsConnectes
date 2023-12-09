@@ -35,9 +35,9 @@ void Principal::setup(){
     leds.setColorRGB(0, 0, 0, 0);
     leds.setColorRGB(1, 0, 0, 0);
 
-    // Creation des pieces dans l'appartement
-    appt.ajouterPiece("Salon");
-    appt.ajouterPiece("Chambre");
+    // Creation des pieces dans l'appartement avec leur numpad associé
+    appt.ajouterPiece("Salon", numpad1);
+    appt.ajouterPiece("Chambre", numpad2);
 }
 
 void Principal::loop(){
