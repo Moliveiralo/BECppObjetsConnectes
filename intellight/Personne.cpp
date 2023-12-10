@@ -32,6 +32,8 @@ Personne::Personne() {
     R = 255;
     G = 255;
     B = 255;
+
+    // On n'ajoute pas la personne vide à la liste de personnes car à priori on ne l'utilisera que pour la vérification de code sur les numpads
 }
 
 Personne::Personne(const String& us_name) {
@@ -52,26 +54,9 @@ Personne::Personne(const String& us_name) {
     R = 255;
     G = 255;
     B = 255;
-}
 
-Personne::Personne(bool estAdmin, bool estVisiteur) {
-    nbPersonnes++;
-    id = nbPersonnes;
-    username = "NULL";
-    isHere = false;
-
-    // On définit le code de l'utilisateur sur les numpads
-    code = -1;
-
-    // On définit les caractéristiques de priorités de l'utilisateur
-    admin = estAdmin;
-    visiteur = estVisiteur;
-
-    // Par défaut, on règle la lumière sur une lumière blanche à 100% d'intensité
-    lightIntensity = 100.0;
-    R = 255;
-    G = 255;
-    B = 255;
+    // On ajoute la personne à la liste de personnes
+    listePersonne.push_back(*this);
 }
 
 Personne::Personne(const String& us_name, bool estAdmin, bool estVisiteur){
@@ -92,6 +77,9 @@ Personne::Personne(const String& us_name, bool estAdmin, bool estVisiteur){
     R = 255;
     G = 255;
     B = 255;
+
+    // On ajoute la personne à la liste de personnes
+    listePersonne.push_back(*this);
 }
 
 Personne::Personne(const String& us_name, bool estAdmin, bool estVisiteur, short c){
@@ -112,6 +100,9 @@ Personne::Personne(const String& us_name, bool estAdmin, bool estVisiteur, short
     R = 255;
     G = 255;
     B = 255;
+
+    // On ajoute la personne à la liste de personnes
+    listePersonne.push_back(*this);
 }
 
 
@@ -207,4 +198,11 @@ void Personne::setCode(short c){
 /* ---------- Autres méthodes: ---------- */
 bool Personne::verifierCode(short c){
     return (c == code);
+}
+
+
+/* ---------- Méthodes de classe: ---------- */
+
+short Personne::getNbPersonnes() {
+    return nbPersonnes;
 }
