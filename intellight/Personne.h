@@ -37,48 +37,48 @@ private:
 
 public:
     /* Constructeurs */
-    Personne();
-    Personne(const String& us_name);
-    Personne(const String& us_name, bool estAdmin, bool estVisiteur);
-    Personne(const String& us_name, bool estAdmin, bool estVisiteur, short c);
+    Personne(); // Constructeur vide, utilisé par la méthode getPersonne() si aucune personne n'a été trouvée
+    Personne(const String& us_name); // Création d'une personne à partir de son nom uniquement
+    Personne(const String& us_name, bool estAdmin, bool estVisiteur); // Création d'une personne avec son nom tout en désignant si elle est admin ou visiteur
+    Personne(const String& us_name, bool estAdmin, bool estVisiteur, short c); // Création d'une personne avec son nom tout en désignant si elle est admin ou visiteur et en spécifiant son code sur les numpads
 
 
     /* Méthodes */
     // Getters
-    short getId() const;
-    String getUsername() const;
-    bool getPresence() const;
-    short getR() const;
-    short getG() const;
-    short getB() const;
-    short getLightIntensity() const;
-    short * getLightPreferences() const;
-    bool getEstAdmin() const;
-    bool getEstVisiteur() const;
+    short getId() const; // Permet de récupérer l'id d'une personne
+    String getUsername() const; // Permet de récupérer le nom d'une personne
+    bool getPresence() const; // Permet de savoir si la personne est présente dans l'appartement
+    short getR() const; // Permet de récupérer la préférence de la personne concernant le rouge
+    short getG() const; // Permet de récupérer la préférence de la personne concernant le vert
+    short getB() const; // Permet de récupérer la préférence de la personne concernant le bleu
+    short getLightIntensity() const; // Permet de récupérer la préférence de la personne concernant l'intensité lumineuse
+    short * getLightPreferences() const; // Permet de récupérer l'ensemble des préférences de la personne en termes de lumière
+    bool getEstAdmin() const; // Permet de savoir si la personne est admin
+    bool getEstVisiteur() const; // Permet de savoir si la personne est visiteur
 
 
     // Setters
-    void setUsername(const String&  u);
-    void setPresence(bool p);
-    void setR(short r);
-    void setG(short g);
-    void setB(short b);
-    void setRGB(short r, short g, short b);
-    void setLightIntensity(float i);
-    void setLightPreferences(short r, short g, short b, float i);
-    void setCode(short c);
+    void setUsername(const String&  u); // Permet de changer le nom de la personne
+    void setPresence(bool p); // Permet de définir si la personne est présente dans l'appartement ou non
+    void setR(short r); // Permet de changer la préférence de la personne concernant le rouge
+    void setG(short g); // Permet de changer la préférence de la personne concernant le vert
+    void setB(short b); // Permet de changer la préférence de la personne concernant le bleu
+    void setRGB(short r, short g, short b); // Permet de changer la préférence de la personne concernant le rouge, le vert et le bleu
+    void setLightIntensity(float i); // Permet de changer la préférence de la personne concernant l'intensité de la lumière
+    void setLightPreferences(short r, short g, short b, float i); // Permet de changer les préférence de la personne concernant la lumière
+    void setCode(short c); // Permet de changer le code de la personne sur les numpads de l'appartement
 
 
     // Autres méthodes
-    bool verifierCode(short c);
+    bool verifierCode(short c); // Permet de vérifier si un code correspond bien à celui de la personne. Retourne true si c'est le cas, false sinon.
 
 
     // Méthodes de classe
-    static short getNbPersonnes();
-    static Personne getPersonne(short code);
+    static short getNbPersonnes(); // Permet de savoir combien de personnes existent au total
+    static Personne getPersonne(short code); // Permet de récupérer une personne dont le code correspond à celui entré en paramètre. Si aucune ne correspond, une personne 'vide' dont le nom est "NULL" est retournée.
 
     // Destructeurs
-    ~Personne() = default;
+    ~Personne() = default; // Destructeur de personne
 };
 
 #endif //BECPPOBJETSCONNECTES_PERSONNE_H
