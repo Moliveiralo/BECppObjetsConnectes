@@ -202,29 +202,6 @@ bool Personne::verifierCode(short c){
 
 
 /* ---------- Méthodes de classe: ---------- */
-Personne Personne::getPersonne(short code){
-    bool personneTrouvee = false; // Initialement, on a pas encore trouvé la personne avec le code correspondant
-
-    // On commence la recherche au début de la liste de personnes.
-    itPersonne = listePersonne.begin();
-
-    // Tant que l'on a pas trouvé la personne que l'on cherche et que l'on a pas parcouru toute la liste
-    while (not(personneTrouvee) && (itPersonne!=listePersonne.end())){
-
-        // Si le code tapé sur le numpad correspond au code de la personne, alors
-        if (itPersonne->verifierCode(code)){
-            personneTrouvee=true; // On a trouvé la personne, donc on sort de la boucle
-            return *itPersonne; // On retourne la personne correspondant
-            break;
-        }
-
-        // Si le code ne correspond pas, on va s'intéresser à la personne suivante dans la liste
-        itPersonne++;
-    }
-
-    // Si aucune personne n'a le code tapé, alors on retourne une personne "vide" dont le nom est "NULL".
-    return Personne();
-}
 
 short Personne::getNbPersonnes() {
     return nbPersonnes;
