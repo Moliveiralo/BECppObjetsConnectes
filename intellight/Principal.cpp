@@ -46,9 +46,9 @@ void Principal::setup(){
 
 void Principal::loop(){
     // On vérifie pour chaque pièce de l'appartement
-    for(int i=0; i<appt.getNbPiece(); i++){
+    for(int i=1; i<=appt.getNbPiece(); i++){
 
-        // Tant que le numpad est disponible
+        // Tant que l'UART associé au numpad est disponible
         while(appt[i].getNumpad()->getSerial()->available()){
 
             // On récupère la touche qui est appuyée sur le numpad
@@ -57,41 +57,55 @@ void Principal::loop(){
             switch(touche){
                 case '*': // Si la touche appuyée est étoile, alors on incrémente le nombre de fois ou étoiles a été tapé
                     appt[i].getNumpad()->incrNbEtoiles();
-
-                    // Si la personne a fait 4 fois étoile, on lance l'easter egg. Celui-ci s'arrête quand la personne réappuie sur étoile.
-                    while (appt[i].getNumpad()->getNbEtoiles() == 4){
-                        if (appt[i].getNumpad()->getTouche() == '*') {
-                            appt[i].getNumpad()->incrNbEtoiles();
-                        }
-                        leds.setColorHSL(i, hue, 1.0, 0.5);
-                        delay(50);
-
-                        if (up) {
-                            hue += 0.025;
-                        } else {
-                            hue -= 0.025;
-                        }
-                        if (hue>=1.0 && up) {
-                            up = false;
-                        } else if (hue<=0.0 && !up) {
-                            up = true;
-                        }
-                    }
                     break;
                 case '#':
                     if (appt[i].getNumpad()->getNbDigits() == 4){
+                        // ON REGARDE SI LE CODE CORRESPOND A QUELQUUN
 
-                    } else {
+                        // SI CA CORRESPOND ON FAIT RENTRER LA PERSONNE CORRESPONDANT
+
+                        // SINON ON RESET LE CODE
+                    } else { // Si la personne a appuyé sur # mais qu'il y a moins de 4 digits, alors le code tapé est réinitialisé et l'utilisateur peut recommencer à taper son code.
                         appt[i].getNumpad()->resetCode();
                     }
                     break;
-                default:
-                    if (appt[i].getNumpad()->getNbDigits() != 4){
+                default: // Si l'utilisateur a appuyé sur un chiffre
+                    if (appt[i].getNumpad()->getNbDigits() < 4){ // Tant que le code n'est pas complet, on rajoute le digit au code.
                         appt[i].getNumpad()->addDigitToCode((short) touche);
                     }
                     break;
             }
         }
+
+
+
+
+        // Gestion de l'easter egg: si l'utilisateur a tapé 4 fois sur étoiles, on active le mode disco !
+        if (appt[i].getNumpad()->getNbEtoiles() == 4){
+            leds.setColorHSL(1-(i-1), hue, 1.0, 0.5);
+            delay(50);
+
+            if (up) {
+                hue += 0.025;
+            } else {
+                hue -= 0.025;
+            }
+            if (hue >= 1.0 && up) {
+                up = false;
+            } else if (hue <= 0.0 && !up) {
+                up = true;
+            }
+        }
+
+        // Si la personne appuie de nouveau sur étoile, l'easter egg est arrêté et le nombre d'étoiles est remis à zéro.
+        if (appt[i].getNumpad()->getNbEtoiles()>4){
+            appt[i].getNumpad()->resetNbEtoiles();
+            leds.setColorRGB(1-(i-1), 0, 0, 0);
+        }
     }
+//    for(int i=1; i<=appt.getNbPiece(); i++){
+//      Serial.println(appt[i].getNom());
+//      delay(500);
+//    }
 }
 
