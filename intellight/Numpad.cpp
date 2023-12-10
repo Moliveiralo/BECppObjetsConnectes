@@ -20,12 +20,12 @@ Numpad::Numpad(SoftwareSerial * s){
     nbEtoiles = 0;
 }
 
-uint8_t Numpad::getData() const {
+uint8_t Numpad::getData() {
   updateData();
   return data;
 }
 
-char Numpad::getTouche() const{
+char Numpad::getTouche(){
   while (mySerial->available()){
     switch(getData()) {
                 case 0xE1 : // TOUCHE 1
@@ -78,7 +78,7 @@ SoftwareSerial * Numpad::getSerial(){
   return mySerial;
 }
 
-void Numpad::updateData() const {
+void Numpad::updateData() {
   data = mySerial->read();
 }
 
