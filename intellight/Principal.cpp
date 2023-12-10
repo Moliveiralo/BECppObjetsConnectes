@@ -58,19 +58,45 @@ void Principal::loop(){
                 case '*': // Si la touche appuyée est étoile, alors on incrémente le nombre de fois ou étoiles a été tapé
                     appt[i].getNumpad()->incrNbEtoiles();
                     break;
+
+
                 case '#':
                     if (appt[i].getNumpad()->getNbDigits() == 4){
-                        // ON REGARDE SI LE CODE CORRESPOND A QUELQUUN
+                        // On cherche une personne dont le code correspond à celui entré sur le numpad
+                        Personne personneCorrespondante = getPersonne(appt[i].getNumpad()->getCode());
 
-                        // SI CA CORRESPOND ON FAIT RENTRER LA PERSONNE CORRESPONDANT
+                        // Si une personne correspondante existe
+                        if (personneCorrespondante.getUsername() != "NULL"){
+                        // Si la personne n'était pas déjà dans la pièce
 
-                        // SINON ON RESET LE CODE
-                    } else { // Si la personne a appuyé sur # mais qu'il y a moins de 4 digits, alors le code tapé est réinitialisé et l'utilisateur peut recommencer à taper son code.
+                            // Si la personne était dans l'autre pièce, alors elle en sort
+
+                            // Entrée de la personne dans la pièce actuelle
+
+                        // Si la personne était déjà présente, elle sort de la pièce
+
+
+                        // Sinon, on reset le code
+                        } else {
+                            appt[i].getNumpad()->resetCode();
+                        }
+
+                    // Si la personne a appuyé sur # mais qu'il y a moins de 4 digits, alors le code tapé est réinitialisé et l'utilisateur peut recommencer à taper son code.
+                    } else {
                         appt[i].getNumpad()->resetCode();
                     }
                     break;
+
+
                 default: // Si l'utilisateur a appuyé sur un chiffre
-                    if (appt[i].getNumpad()->getNbDigits() < 4){ // Tant que le code n'est pas complet, on rajoute le digit au code.
+                    // Tant que le code n'est pas complet, on rajoute le digit au code.
+                    if (appt[i].getNumpad()->getNbDigits() < 4){
+                        appt[i].getNumpad()->addDigitToCode((short) touche);
+                    }
+
+                    // Si le code était déjà complet et que l'on appuie à nouveau sur un chiffre, on reset le code et on ajoute le nouveau digit au code
+                    if (appt[i].getNumpad()->getNbDigits() >= 4){
+                        appt[i].getNumpad()->resetCode();
                         appt[i].getNumpad()->addDigitToCode((short) touche);
                     }
                     break;
