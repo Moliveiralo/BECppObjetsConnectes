@@ -10,8 +10,6 @@
 #ifndef BECPPOBJETSCONNECTES_APPARTEMENT_H
 #define BECPPOBJETSCONNECTES_APPARTEMENT_H
 
-#include <Arduino.h>
-#include <list>
 #include "Piece.h"
 #include "Personne.h"
 
@@ -49,8 +47,8 @@ public :
 
 
     /************* Surcharge d'operateurs *************/
-    // Surcharge de l'operatuer []
-    // Quand on fait Appartement[id], on accede a la piece caracterise par cet id
+    // Surcharge de l'opérateur []
+    // Quand on fait Appartement[id], on accède à la piece caractérise par cet id
     Piece & operator[] (int indice);
 
 
