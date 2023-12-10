@@ -32,6 +32,8 @@ Personne::Personne() {
     R = 255;
     G = 255;
     B = 255;
+
+    // On n'ajoute pas la personne vide à la liste de personnes car à priori on ne l'utilisera que pour la vérification de code sur les numpads
 }
 
 Personne::Personne(const String& us_name) {
@@ -52,26 +54,9 @@ Personne::Personne(const String& us_name) {
     R = 255;
     G = 255;
     B = 255;
-}
 
-Personne::Personne(bool estAdmin, bool estVisiteur) {
-    nbPersonnes++;
-    id = nbPersonnes;
-    username = "NULL";
-    isHere = false;
-
-    // On définit le code de l'utilisateur sur les numpads
-    code = -1;
-
-    // On définit les caractéristiques de priorités de l'utilisateur
-    admin = estAdmin;
-    visiteur = estVisiteur;
-
-    // Par défaut, on règle la lumière sur une lumière blanche à 100% d'intensité
-    lightIntensity = 100.0;
-    R = 255;
-    G = 255;
-    B = 255;
+    // On ajoute la personne à la liste de personnes
+    listePersonne.push_back(*this);
 }
 
 Personne::Personne(const String& us_name, bool estAdmin, bool estVisiteur){
@@ -92,6 +77,9 @@ Personne::Personne(const String& us_name, bool estAdmin, bool estVisiteur){
     R = 255;
     G = 255;
     B = 255;
+
+    // On ajoute la personne à la liste de personnes
+    listePersonne.push_back(*this);
 }
 
 Personne::Personne(const String& us_name, bool estAdmin, bool estVisiteur, short c){
@@ -112,6 +100,9 @@ Personne::Personne(const String& us_name, bool estAdmin, bool estVisiteur, short
     R = 255;
     G = 255;
     B = 255;
+
+    // On ajoute la personne à la liste de personnes
+    listePersonne.push_back(*this);
 }
 
 
@@ -207,4 +198,34 @@ void Personne::setCode(short c){
 /* ---------- Autres méthodes: ---------- */
 bool Personne::verifierCode(short c){
     return (c == code);
+}
+
+
+/* ---------- Méthodes de classe: ---------- */
+Personne Personne::getPersonne(short code){
+    bool personneTrouvee = false; // Initialement, on a pas encore trouvé la personne avec le code correspondant
+
+    // On commence la recherche au début de la liste de personnes.
+    itPersonne = listePersonne.begin();
+
+    // Tant que l'on a pas trouvé la personne que l'on cherche et que l'on a pas parcouru toute la liste
+    while (not(personneTrouvee) && (itPersonne!=listePersonne.end())){
+
+        // Si le code tapé sur le numpad correspond au code de la personne, alors
+        if (itPersonne->verifierCode(code)){
+            personneTrouvee=true; // On a trouvé la personne, donc on sort de la boucle
+            return *itPersonne; // On retourne la personne correspondant
+            break;
+        }
+
+        // Si le code ne correspond pas, on va s'intéresser à la personne suivante dans la liste
+        itPersonne++;
+    }
+
+    // Si aucune personne n'a le code tapé, alors on retourne une personne "vide" dont le nom est "NULL".
+    return Personne();
+}
+
+short Personne::getNbPersonnes() {
+    return nbPersonnes;
 }

@@ -12,14 +12,16 @@
 
 
 #include <Arduino.h>
-
-// (Idée de classe dérivée: personne prioritaire?)
+#include <list>
 
 class Personne {
 private:
     /* Variables de classe */
-    static short nbPersonnes;
+    static short nbPersonnes; // Variable de classe permettant de compter le nombre de personnes existantes
 
+    // Liste des personnes existantes
+    static std::list<Personne> listePersonne; // Liste de toutes les personnes existantes
+    static std::list<Personne>::iterator itPersonne; // Itérateur sur la liste de personnes
 
     /* Données générales sur l'utilisateur */
     short id; // Identifiant de l'utilisateur
@@ -30,14 +32,13 @@ private:
     bool visiteur; // Vrai si la personne est visiteur
 
     /* Données de préférence de l'utilisateur */
-    float lightIntensity;
-    short R, G, B;
+    float lightIntensity; // Intensité lumineuse en pourcentage. Cette variable est comprise entre 0.0% et 100.0%.
+    short R, G, B; // Intensité lumineuse en rouge, vert et bleu. Cette variable est comprise entre 0 et 255.
 
 public:
     /* Constructeurs */
     Personne();
     Personne(const String& us_name);
-    Personne(bool estAdmin, bool estVisiteur);
     Personne(const String& us_name, bool estAdmin, bool estVisiteur);
     Personne(const String& us_name, bool estAdmin, bool estVisiteur, short c);
 
@@ -74,7 +75,7 @@ public:
 
     // Méthodes de classe
     static short getNbPersonnes();
-
+    static Personne getPersonne(short code);
 
     // Destructeurs
     ~Personne() = default;
