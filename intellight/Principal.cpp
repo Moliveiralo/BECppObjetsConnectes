@@ -68,12 +68,19 @@ void Principal::loop(){
                         // Si une personne correspondante existe
                         if (personneCorrespondante.getUsername() != "NULL"){
                         // Si la personne n'était pas déjà dans la pièce
+                            if (!appt[i].personnePresente(&personneCorrespondante)){
 
-                            // Si la personne était dans l'autre pièce, alors elle en sort
+                                // Si la personne était dans l'autre pièce, alors elle en sort
+                                if (appt[1-i].personnePresente(&personneCorrespondante)){
+                                    appt[1-i].personneSort(&personneCorrespondante, &leds);
+                                }
 
-                            // Entrée de la personne dans la pièce actuelle
+                                // Entrée de la personne dans la pièce actuelle
+                                appt[i].personneEntre(&personneCorrespondante, &leds);
 
-                        // Si la personne était déjà présente, elle sort de la pièce
+                            } else { // Si la personne était déjà présente, elle sort de la pièce
+                                appt[i].personneSort(&personneCorrespondante, &leds);
+                            }
 
 
                         // Sinon, on reset le code
