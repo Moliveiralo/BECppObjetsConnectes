@@ -170,4 +170,3 @@ bool Piece::personnePresente(Personne * p){
     // Si aucune personne n'a le code tapé, alors on retourne une personne "vide" dont le nom est "NULL".
     return personneTrouvee;
 }
-}
