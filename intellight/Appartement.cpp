@@ -57,7 +57,7 @@ void Appartement::retirerPiece(short pieceId) {
     }
 }
 
-void Appartement::ajouterPersonne(Personne *p) {
+void Appartement::ajouterPersonne(Personne * p) {
     listePersonnesExistantes.push_back(p);
 }
 

@@ -46,6 +46,11 @@ void Principal::setup(){
     habitant2 = new Personne("Maxime", false, false, 1793);
     habitantPrio = new Personne("Stacy", true, false, 8520);
     visiteur = new Personne("Lucile", false, true, 4785);
+
+    appt.ajouterPersonne(habitant1);
+    appt.ajouterPersonne(habitant2);
+    appt.ajouterPersonne(habitantPrio);
+    appt.ajouterPersonne(visiteur);
 }
 
 

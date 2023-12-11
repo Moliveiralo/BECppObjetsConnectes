@@ -45,7 +45,6 @@ private:
     Appartement appt;
 
     // Creation des personnes qui peuvent gerer les lumieres de l'appartement
-    Personne * listeHabitants;
     // Deux habitants classiques 
     Personne * habitant1;
     Personne * habitant2;
