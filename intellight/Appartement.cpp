@@ -57,49 +57,47 @@ void Appartement::retirerPiece(short pieceId) {
     }
 }
 
-void Appartement::ajouterPersonne(Personne * p) {
-    listePersonnesExistantes.push_back(p);
-}
+//void Appartement::ajouterPersonne(Personne p) {
+//    listePersonnesExistantes.push_back(p);
+//}
+//
+//void Appartement::retirerPersonne(short id){
+//    bool personneEffacee = false;
+//
+//    itPersonnesExistantes=listePersonnesExistantes.begin();
+//    while (not(personneEffacee) && (itPersonnesExistantes!=listePersonnesExistantes.end())){
+//        short testId = itPersonnesExistantes->getId();
+//        if (testId == id){
+//            personneEffacee=true;
+//            listePersonnesExistantes.erase(itPersonnesExistantes);
+//        }
+//        itPersonnesExistantes++;
+//    }
+//}
 
-void Appartement::retirerPersonne(short id){
-    bool personneEffacee = false;
-
-    itPersonnesExistantes=listePersonnesExistantes.begin();
-    while (not(personneEffacee) && (itPersonnesExistantes!=listePersonnesExistantes.end())){
-        Personne * personneActuelle = *itPersonnesExistantes;
-        short testId = personneActuelle->getId();
-        if (testId == id){
-            personneEffacee=true;
-            listePersonnesExistantes.erase(itPersonnesExistantes);
-        }
-        itPersonnesExistantes++;
-    }
-}
-
-Personne Appartement::getPersonneFromCode(short code) {
-    bool personneTrouvee = false; // Initialement, on a pas encore trouvé la personne avec le code correspondant
-
-    // On commence la recherche au début de la liste de personnes.
-    Appartement::itPersonnesExistantes = Appartement::listePersonnesExistantes.begin();
-
-    // Tant que l'on a pas trouvé la personne que l'on cherche et que l'on a pas parcouru toute la liste
-    while (!personneTrouvee && (Appartement::itPersonnesExistantes!=Appartement::listePersonnesExistantes.end())){
-        Personne * personneActuelle = *Appartement::itPersonnesExistantes;
-
-        // Si le code tapé sur le numpad correspond au code de la personne, alors
-        if (personneActuelle->verifierCode(code)){
-            personneTrouvee=true; // On a trouvé la personne, donc on sort de la boucle
-            return *personneActuelle; // On retourne la personne correspondante
-            break;
-        }
-
-        // Si le code ne correspond pas, on va s'intéresser à la personne suivante dans la liste
-        Appartement::itPersonnesExistantes++;
-    }
-
-    // Si aucune personne n'a le code tapé, alors on retourne une personne "vide" dont le nom est "NULL".
-    return Personne();
-}
+//Personne Appartement::getPersonneFromCode(short code) {
+//    bool personneTrouvee = false; // Initialement, on a pas encore trouvé la personne avec le code correspondant
+//
+//    // On commence la recherche au début de la liste de personnes.
+//    Appartement::itPersonnesExistantes = Appartement::listePersonnesExistantes.begin();
+//
+//    // Tant que l'on a pas trouvé la personne que l'on cherche et que l'on a pas parcouru toute la liste
+//    while (!personneTrouvee && (Appartement::itPersonnesExistantes!=Appartement::listePersonnesExistantes.end())){
+//
+//        // Si le code tapé sur le numpad correspond au code de la personne, alors
+//        if (itPersonnesExistantes->verifierCode(code)){
+//            personneTrouvee=true; // On a trouvé la personne, donc on sort de la boucle
+//            return *itPersonnesExistantes; // On retourne la personne correspondante
+//            break;
+//        }
+//
+//        // Si le code ne correspond pas, on va s'intéresser à la personne suivante dans la liste
+//        Appartement::itPersonnesExistantes++;
+//    }
+//
+//    // Si aucune personne n'a le code tapé, alors on retourne une personne "vide" dont le nom est "NULL".
+//    return Personne();
+//}
 
 
 /************* Surcharge d'operateurs *************/

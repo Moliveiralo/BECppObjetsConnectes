@@ -23,9 +23,9 @@ private :
     list<Piece> listePieces;
     list<Piece>::iterator itPiece;
 
-    // Liste des personnes existantes
-    static list<Personne*> listePersonnesExistantes;
-    static list<Personne*>::iterator itPersonnesExistantes;
+//    // Liste des personnes existantes
+//    static list<Personne> listePersonnesExistantes;
+//    static list<Personne>::iterator itPersonnesExistantes;
 
     /*Variable de classe*/
     static short nbAppartement;
@@ -46,9 +46,9 @@ public :
     // Relatives à la liste de pieces
     void ajouterPiece(const String& nom, Numpad * npad); // Permet de creer une nouvelle piece dans un appartement
     void retirerPiece (short pieceId); // Retire une piece de l'appartement
-    static void ajouterPersonne(Personne * p);
-    static void retirerPersonne(short id);
-    Personne getPersonneFromCode(short code); // Permet de récupérer une personne dont le code correspond à celui entré en paramètre. Si aucune ne correspond, une personne 'vide' dont le nom est "NULL" est retournée
+//    static void ajouterPersonne(Personne p);
+//    static void retirerPersonne(short id);
+//    Personne getPersonneFromCode(short code); // Permet de récupérer une personne dont le code correspond à celui entré en paramètre. Si aucune ne correspond, une personne 'vide' dont le nom est "NULL" est retournée
 
 
 
