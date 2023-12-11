@@ -148,25 +148,32 @@ Numpad *Piece::getNumpad() {
     return numpad;
 }
 
-bool Piece::personnePresente(Personne * p){
-    bool personneTrouvee = false; // Initialement, on a pas encore trouvé la personne avec le code correspondant
-
-    // On commence la recherche au début de la liste de personnes.
-    Piece::itPersonnesPresentes = Piece::listePersonnesPresentes.begin();
-
-    // Tant que l'on n'a pas trouvé la personne que l'on cherche et que l'on n'a pas parcouru toute la liste
-    while (not(personneTrouvee) && (Piece::itPersonnesPresentes!=Piece::listePersonnesPresentes.end())){
-        Personne * personnePointee = *itPersonnesPresentes;
-        // Si le code tapé sur le numpad correspond au code de la personne, alors
-        if (*personnePointee == *p){
-            personneTrouvee=true; // On a trouvé la personne, donc on sort de la boucle
-            break;
-        }
-
-        // Si le code ne correspond pas, on va s'intéresser à la personne suivante dans la liste
-        Piece::itPersonnesPresentes++;
-    }
-
-    // Si aucune personne n'a le code tapé, alors on retourne une personne "vide" dont le nom est "NULL".
-    return personneTrouvee;
-}
+//bool Piece::personnePresente(Personne * p){
+//    bool personneTrouvee = false; // Initialement, on a pas encore trouvé la personne avec le code correspondant
+//
+//    // On commence la recherche au début de la liste de personnes.
+//    Piece::itPersonnesPresentes = Piece::listePersonnesPresentes.begin();
+//    Serial.println("On commence la recherche");
+//
+//    // Tant que l'on n'a pas trouvé la personne que l'on cherche et que l'on n'a pas parcouru toute la liste
+//    while (!(personneTrouvee) && (Piece::itPersonnesPresentes!=Piece::listePersonnesPresentes.end())){
+//        Personne * personnePointee = *itPersonnesPresentes;
+//
+//        Serial.println("On rentre dans le while");
+//        // Si le code tapé sur le numpad correspond au code de la personne, alors
+//        if (*personnePointee == *p){
+//            Serial.println("On rentre dans le if");
+//            personneTrouvee=true; // On a trouvé la personne, donc on sort de la boucle
+//            break;
+//        }
+//
+//        // Si le code ne correspond pas, on va s'intéresser à la personne suivante dans la liste
+//        Piece::itPersonnesPresentes++;
+//        if (Piece::itPersonnesPresentes == Piece::listePersonnesPresentes.end()){
+//            break;
+//        }
+//    }
+//
+//    // Si aucune personne n'a le code tapé, alors on retourne une personne "vide" dont le nom est "NULL".
+//    return personneTrouvee;
+//}

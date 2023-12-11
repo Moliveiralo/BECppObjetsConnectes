@@ -65,7 +65,7 @@ public :
     void changerCaracteristiques (short r, short g, short b, ChainableLED *leds); // Permet de changer les caracteristiques de la lumiere
     void personneEntre(Personne* nouvellePersonne, ChainableLED *leds); // Rajoute une personne dans la liste des personnes presentes dans la piece
     void personneSort(Personne* personneSortante, ChainableLED *leds); // Retire une personne de la liste des personnes presentes dans la piece
-    bool personnePresente(Personne * p);
+//    bool personnePresente(Personne * p);
 
     /************* Destructeur *************/
 };
