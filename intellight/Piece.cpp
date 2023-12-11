@@ -22,6 +22,8 @@ Piece:: Piece(const String& nom, short id, Numpad * npad){
 
     // Chaque pièce est associée à un numpad
     numpad = npad;
+
+    nbPersonnesPresentes=0;
 }
 
 /************* Methodes *************/
@@ -64,7 +66,7 @@ void Piece::allumerLumiere (short r, short g, short b, ChainableLED *leds){
     ledAllumee=true;
     // Et on definit les caracteristiques des lumieres de cette piece
     R=r ; G=g; B=b;
-    leds->setColorRGB(id-1, R, G, B);
+    leds->setColorRGB(1-(id-1), R, G, B);
 }
 
 void Piece::eteindreLumiere (ChainableLED *leds){
@@ -72,14 +74,14 @@ void Piece::eteindreLumiere (ChainableLED *leds){
     ledAllumee=false;
     // On remet les caracteristiques de la lumiere a 0
     R=0; G=0; B=0;
-    leds->setColorRGB(id-1, R, G, B);
+    leds->setColorRGB(1-(id-1), R, G, B);
 }
 
 void Piece::changerCaracteristiques(short r, short g, short b, ChainableLED *leds) {
     // On redefinit les caracteristiques des lumieres de cette piece
     R=r ; G=g; B=b;
     // Et on les applique a la lumiere
-    leds->setColorRGB(id-1, R, G, B);
+    leds->setColorRGB(1-(id-1), R, G, B);
 }
 
 void Piece::personneEntre(Personne* nouvellePersonne, ChainableLED *leds){
@@ -111,36 +113,42 @@ void Piece::personneEntre(Personne* nouvellePersonne, ChainableLED *leds){
 }
 
 void Piece::personneSort(Personne* personneSortante, ChainableLED *leds){
-
-    // On regarde si cette personne etait la personne prioritaire
-    // et si c'est le cas on remet le booleen a false
-    if (personneSortante->getEstAdmin()) personnePrioPresente = false;
-
-    // On efface ensuite la personne
-    itPersonnesPresentes = listePersonnesPresentes.begin();
-
-    while (itPersonnesPresentes != listePersonnesPresentes.end()) {
-     short testId = (*itPersonnesPresentes)->getId();
-
-      if (testId == personneSortante->getId()) {
-          itPersonnesPresentes = listePersonnesPresentes.erase(itPersonnesPresentes);
-          nbPersonnesPresentes--;
-      } else itPersonnesPresentes++;
-    }
+    bool personneTrouvee = false;
 
     Serial.println(nbPersonnesPresentes);
-    // Si la personne etait seule dans la piece on eteint la lumiere
-    if (nbPersonnesPresentes == 0) {eteindreLumiere(leds); Serial.println("Lumieres eteintes");}
+    if (nbPersonnesPresentes != 0){
+        // On regarde si cette personne etait la personne prioritaire
+        // et si c'est le cas on remet le booleen a false
+        if (personneSortante->getEstAdmin()) personnePrioPresente = false;
 
-    // Sinon, s'il n'y a pas de personne prioritaire, on utilise la methode
-    // personne entre avec la premiere personne de la liste
-    else if (!personnePrioPresente) {
-      Serial.println("Personne prio non presente");
+        // On efface ensuite la personne
+        itPersonnesPresentes = listePersonnesPresentes.begin();
 
-      // On met les caracteriques de la lumiere avec les preferences de la premiere personne de la liste
-      itPersonnesPresentes = listePersonnesPresentes.begin();
-      changerCaracteristiques((*itPersonnesPresentes)->getR(), (*itPersonnesPresentes)->getG(), (*itPersonnesPresentes)->getB(), leds);
-      // GERER QUAND LA PREMIERE PERSONNE DE LA LISTE EST UN VISITEUR
+        while ((itPersonnesPresentes != listePersonnesPresentes.end()) && !personneTrouvee) {
+            short testId = (*itPersonnesPresentes)->getId();
+
+            if (testId == personneSortante->getId()) {
+                itPersonnesPresentes = listePersonnesPresentes.erase(itPersonnesPresentes);
+                nbPersonnesPresentes--;
+                personneTrouvee = true;
+            } else itPersonnesPresentes++;
+        }
+
+        if (personneTrouvee) {
+            // Si la personne etait seule dans la piece on eteint la lumiere
+            if (nbPersonnesPresentes == 0) { eteindreLumiere(leds); }
+
+                // Sinon, s'il n'y a pas de personne prioritaire, on utilise la methode
+                // personne entre avec la premiere personne de la liste
+            else if (!personnePrioPresente) {
+
+                // On met les caracteriques de la lumiere avec les preferences de la premiere personne de la liste
+                itPersonnesPresentes = listePersonnesPresentes.begin();
+                changerCaracteristiques((*itPersonnesPresentes)->getR(), (*itPersonnesPresentes)->getG(),
+                                        (*itPersonnesPresentes)->getB(), leds);
+                // GERER QUAND LA PREMIERE PERSONNE DE LA LISTE EST UN VISITEUR
+            }
+        }
     }
 }
 
@@ -153,18 +161,32 @@ bool Piece::personnePresente(Personne * p){
 
     // On commence la recherche au début de la liste de personnes.
     Piece::itPersonnesPresentes = Piece::listePersonnesPresentes.begin();
+    Serial.println("On commence la recherche");
+
+    Serial.println(nbPersonnesPresentes);
+
+    if (nbPersonnesPresentes == 0){
+        Serial.println("La piece est vide, on retourne false");
+        return false;
+    }
 
     // Tant que l'on n'a pas trouvé la personne que l'on cherche et que l'on n'a pas parcouru toute la liste
-    while (not(personneTrouvee) && (Piece::itPersonnesPresentes!=Piece::listePersonnesPresentes.end())){
+    while (!(personneTrouvee) && (Piece::itPersonnesPresentes!=Piece::listePersonnesPresentes.end())){
         Personne * personnePointee = *itPersonnesPresentes;
+
+        Serial.println("On rentre dans le while");
         // Si le code tapé sur le numpad correspond au code de la personne, alors
         if (*personnePointee == *p){
+            Serial.println("On rentre dans le if");
             personneTrouvee=true; // On a trouvé la personne, donc on sort de la boucle
             break;
         }
 
         // Si le code ne correspond pas, on va s'intéresser à la personne suivante dans la liste
         Piece::itPersonnesPresentes++;
+        if (Piece::itPersonnesPresentes == Piece::listePersonnesPresentes.end()){
+            break;
+        }
     }
 
     // Si aucune personne n'a le code tapé, alors on retourne une personne "vide" dont le nom est "NULL".

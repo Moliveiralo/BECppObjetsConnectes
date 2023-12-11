@@ -127,8 +127,6 @@ void Numpad::addDigitToCode(char digit){
         default:
             break;
     }
-    Serial.println("Digit ajouté:");
-    Serial.println(code[nbDigits-1]);
 }
 
 void Numpad::resetNbEtoiles(){
