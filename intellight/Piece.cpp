@@ -96,15 +96,15 @@ void Piece::personneEntre(Personne* nouvellePersonne, ChainableLED *leds){
     // la lumiere prend les caracteristiques de cette personne
     else if (nouvellePersonne->getEstAdmin()){
       changerCaracteristiques(nouvellePersonne->getR(), nouvellePersonne->getG(), nouvellePersonne->getB(), leds);
-      personnePrioPresente = true; 
+      personnePrioPresente = true;
     }
-        
+
 
     // Si la personne n'est pas prioritaire et n'est pas un visiteur,
     // et s'il n'y a pas deja une personne prioritaire dans la piece,
-    // on change les caracteriques de la lumiere avec les preferences de la premiere personne 
+    // on change les caracteriques de la lumiere avec les preferences de la premiere personne
     else if (!(nouvellePersonne->getEstVisiteur()) && !(personnePrioPresente)){
-        itPersonnesPresentes = listePersonnesPresentes.begin();    
+        itPersonnesPresentes = listePersonnesPresentes.begin();
         changerCaracteristiques((*itPersonnesPresentes)->getR(), (*itPersonnesPresentes)->getG(), (*itPersonnesPresentes)->getB(), leds);
         // GERER QUAND LA PREMIERE PERSONNE DE LA LISTE EST UN VISITEUR
     }
@@ -127,7 +127,7 @@ void Piece::personneSort(Personne* personneSortante, ChainableLED *leds){
           nbPersonnesPresentes--;
       } else itPersonnesPresentes++;
     }
-    
+
     Serial.println(nbPersonnesPresentes);
     // Si la personne etait seule dans la piece on eteint la lumiere
     if (nbPersonnesPresentes == 0) {eteindreLumiere(leds); Serial.println("Lumieres eteintes");}
@@ -137,8 +137,8 @@ void Piece::personneSort(Personne* personneSortante, ChainableLED *leds){
     else if (!personnePrioPresente) {
       Serial.println("Personne prio non presente");
 
-      // On met les caracteriques de la lumiere avec les preferences de la premiere personne de la liste 
-      itPersonnesPresentes = listePersonnesPresentes.begin();    
+      // On met les caracteriques de la lumiere avec les preferences de la premiere personne de la liste
+      itPersonnesPresentes = listePersonnesPresentes.begin();
       changerCaracteristiques((*itPersonnesPresentes)->getR(), (*itPersonnesPresentes)->getG(), (*itPersonnesPresentes)->getB(), leds);
       // GERER QUAND LA PREMIERE PERSONNE DE LA LISTE EST UN VISITEUR
     }

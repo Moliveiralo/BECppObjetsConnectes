@@ -11,7 +11,6 @@
 #define BECPPOBJETSCONNECTES_APPARTEMENT_H
 
 #include "Piece.h"
-#include "Personne.h"
 
 
 class Appartement {
@@ -21,7 +20,7 @@ private :
     short nbPiece; // Nb de pièces qu'il y a dans l'appartement
 
     // Liste des pieces de l'appartement
-    list<Piece>  listePieces;
+    list<Piece> listePieces;
     list<Piece>::iterator itPiece;
 
     /*Variable de classe*/

@@ -12,7 +12,6 @@
 
 #include "Appartement.h"
 #include "SoftwareSerial.h"
-#include "Numpad.h"
 
 /************* Liste des pins du NodeMCU 1.0 *************/
 /*static const uint8_t D0   = 16;
@@ -46,13 +45,14 @@ private:
     Appartement appt;
 
     // Creation des personnes qui peuvent gerer les lumieres de l'appartement
+    Personne * listeHabitants;
     // Deux habitants classiques 
-    Personne habitant1;
-    Personne habitant2; 
+    Personne * habitant1;
+    Personne * habitant2;
     // Un habitant prioritaire
-    Personne habitantPrio; 
+    Personne * habitantPrio;
     // Un visiteur 
-    Personne visiteur; 
+    Personne * visiteur;
 
 
     SoftwareSerial * mySerial, * mySerial2;

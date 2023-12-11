@@ -10,8 +10,7 @@
 #include "Personne.h"
 
 /* ---------- Initialisation de la variable de classe ---------- */
-short Personne::nbPersonnes = 0;
-
+short Personne::nbPersonnes = 0; // Initialisation du nombre de personnes initialement à 0
 
 /* ---------- Constructeurs: ---------- */
 Personne::Personne() {
@@ -56,7 +55,7 @@ Personne::Personne(const String& us_name) {
     B = 255;
 
     // On ajoute la personne à la liste de personnes
-    listePersonne.push_back(*this);
+//    addNodeToList(this);
 }
 
 Personne::Personne(const String& us_name, bool estAdmin, bool estVisiteur){
@@ -79,7 +78,7 @@ Personne::Personne(const String& us_name, bool estAdmin, bool estVisiteur){
     B = 255;
 
     // On ajoute la personne à la liste de personnes
-    listePersonne.push_back(*this);
+//    addNodeToList(this);
 }
 
 Personne::Personne(const String& us_name, bool estAdmin, bool estVisiteur, short c){
@@ -102,7 +101,7 @@ Personne::Personne(const String& us_name, bool estAdmin, bool estVisiteur, short
     B = 255;
 
     // On ajoute la personne à la liste de personnes
-    listePersonne.push_back(*this);
+//    addNodeToList(this);
 }
 
 

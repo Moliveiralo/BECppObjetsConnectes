@@ -12,7 +12,7 @@
 
 
 #include <Arduino.h>
-#include <list>
+//#include <list>
 
 class Personne {
 private:
@@ -20,8 +20,8 @@ private:
     static short nbPersonnes; // Variable de classe permettant de compter le nombre de personnes existantes
 
     // Liste des personnes existantes
-    static std::list<Personne> listePersonne; // Liste de toutes les personnes existantes
-    static std::list<Personne>::iterator itPersonne; // Itérateur sur la liste de personnes
+//    static std::list<Personne*> listePersonne; // Liste de toutes les personnes existantes
+//    static std::list<Personne*>::iterator itPersonne; // Itérateur sur la liste de personnes
 
     /* Données générales sur l'utilisateur */
     short id; // Identifiant de l'utilisateur
@@ -37,7 +37,7 @@ private:
 
 public:
     /* Constructeurs */
-    Personne(); // Constructeur vide, utilisé par la méthode getPersonne() si aucune personne n'a été trouvée
+    Personne(); // Constructeur vide, utilisé par la méthode getPersonneFromCode() si aucune personne n'a été trouvée
     Personne(const String& us_name); // Création d'une personne à partir de son nom uniquement
     Personne(const String& us_name, bool estAdmin, bool estVisiteur); // Création d'une personne avec son nom tout en désignant si elle est admin ou visiteur
     Personne(const String& us_name, bool estAdmin, bool estVisiteur, short c); // Création d'une personne avec son nom tout en désignant si elle est admin ou visiteur et en spécifiant son code sur les numpads
@@ -82,7 +82,7 @@ public:
 
 
     /* Fonctions amies */
-    friend Personne getPersonne(short code); // Permet de récupérer une personne dont le code correspond à celui entré en paramètre. Si aucune ne correspond, une personne 'vide' dont le nom est "NULL" est retournée.
+//    friend Personne getPersonneFromCode(short code); // Permet de récupérer une personne dont le code correspond à celui entré en paramètre. Si aucune ne correspond, une personne 'vide' dont le nom est "NULL" est retournée
 
 
     /* Surcharge d'opérateurs */
@@ -93,30 +93,30 @@ public:
 
 
 
-
-Personne getPersonne(short code){
-    bool personneTrouvee = false; // Initialement, on a pas encore trouvé la personne avec le code correspondant
-
-    // On commence la recherche au début de la liste de personnes.
-    Personne::itPersonne = Personne::listePersonne.begin();
-
-    // Tant que l'on a pas trouvé la personne que l'on cherche et que l'on a pas parcouru toute la liste
-    while (not(personneTrouvee) && (Personne::itPersonne!=Personne::listePersonne.end())){
-
-        // Si le code tapé sur le numpad correspond au code de la personne, alors
-        if (Personne::itPersonne->verifierCode(code)){
-            personneTrouvee=true; // On a trouvé la personne, donc on sort de la boucle
-            return *Personne::itPersonne; // On retourne la personne correspondant
-            break;
-        }
-
-        // Si le code ne correspond pas, on va s'intéresser à la personne suivante dans la liste
-        Personne::itPersonne++;
-    }
-
-    // Si aucune personne n'a le code tapé, alors on retourne une personne "vide" dont le nom est "NULL".
-    return Personne();
-}
+//Personne getPersonneFromCode(short code){
+//    bool personneTrouvee = false; // Initialement, on a pas encore trouvé la personne avec le code correspondant
+//
+//    // On commence la recherche au début de la liste de personnes.
+//    Personne::itPersonne = Personne::listePersonne.begin();
+//
+//    // Tant que l'on a pas trouvé la personne que l'on cherche et que l'on a pas parcouru toute la liste
+//    while (not(personneTrouvee) && (Personne::itPersonne!=Personne::listePersonne.end())){
+//        Personne * personneActuelle = *Personne::itPersonne;
+//
+//        // Si le code tapé sur le numpad correspond au code de la personne, alors
+//        if (personneActuelle->verifierCode(code)){
+//            personneTrouvee=true; // On a trouvé la personne, donc on sort de la boucle
+//            return *personneActuelle; // On retourne la personne correspondant
+//            break;
+//        }
+//
+//        // Si le code ne correspond pas, on va s'intéresser à la personne suivante dans la liste
+//        Personne::itPersonne++;
+//    }
+//
+//    // Si aucune personne n'a le code tapé, alors on retourne une personne "vide" dont le nom est "NULL".
+//    return Personne();
+//}
 
 
 
