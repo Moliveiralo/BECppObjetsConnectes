@@ -12,7 +12,7 @@
 
 
 #include <Arduino.h>
-//#include <list>
+#include <list>
 
 class Personne {
 private:
@@ -20,8 +20,8 @@ private:
     static short nbPersonnes; // Variable de classe permettant de compter le nombre de personnes existantes
 
     // Liste des personnes existantes
-//    static std::list<Personne*> listePersonne; // Liste de toutes les personnes existantes
-//    static std::list<Personne*>::iterator itPersonne; // Itérateur sur la liste de personnes
+    static std::list<Personne*> listePersonne; // Liste de toutes les personnes existantes
+    static std::list<Personne*>::iterator itPersonne; // Itérateur sur la liste de personnes
 
     /* Données générales sur l'utilisateur */
     short id; // Identifiant de l'utilisateur
