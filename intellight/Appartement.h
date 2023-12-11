@@ -48,6 +48,7 @@ public :
     void retirerPiece (short pieceId); // Retire une piece de l'appartement
     static void ajouterPersonne(Personne * p);
     static void retirerPersonne(short id);
+    Personne getPersonneFromCode(short code); // Permet de récupérer une personne dont le code correspond à celui entré en paramètre. Si aucune ne correspond, une personne 'vide' dont le nom est "NULL" est retournée
 
 
 
@@ -59,36 +60,7 @@ public :
 
     /************* Destructeur *************/
 
-    /* Fonctions amies */
-    friend Personne getPersonneFromCode(short code); // Permet de récupérer une personne dont le code correspond à celui entré en paramètre. Si aucune ne correspond, une personne 'vide' dont le nom est "NULL" est retournée
-
 };
-
-
-Personne getPersonneFromCode(short code){
-    bool personneTrouvee = false; // Initialement, on a pas encore trouvé la personne avec le code correspondant
-
-    // On commence la recherche au début de la liste de personnes.
-    Appartement::itPersonnesExistantes = Appartement::listePersonnesExistantes.begin();
-
-    // Tant que l'on a pas trouvé la personne que l'on cherche et que l'on a pas parcouru toute la liste
-    while (!personneTrouvee && (Appartement::itPersonnesExistantes!=Appartement::listePersonnesExistantes.end())){
-        Personne * personneActuelle = *Appartement::itPersonnesExistantes;
-
-        // Si le code tapé sur le numpad correspond au code de la personne, alors
-        if (personneActuelle->verifierCode(code)){
-            personneTrouvee=true; // On a trouvé la personne, donc on sort de la boucle
-            return *personneActuelle; // On retourne la personne correspondante
-            break;
-        }
-
-        // Si le code ne correspond pas, on va s'intéresser à la personne suivante dans la liste
-        Appartement::itPersonnesExistantes++;
-    }
-
-    // Si aucune personne n'a le code tapé, alors on retourne une personne "vide" dont le nom est "NULL".
-    return Personne();
-}
 
 
 
