@@ -97,25 +97,44 @@ void Principal::loop(){
                             personneCorrespondante = new Personne();
                             Serial.println("Personne ne correspond au code");
                         }
+                        appt[i].getNumpad()->resetCode();
 
                         // Si une personne correspondante existe
                         if (personneCorrespondante->getUsername() != "NULL"){
-                            // Si la personne n'était pas déjà dans la pièce
-                            if (!appt[i].personnePresente(personneCorrespondante)){
-                              Serial.println("La personne n'est pas présente dans la piece du numpad");
-
-                                // Si la personne était dans l'autre pièce, alors elle en sort
-                                if (appt[1-i].personnePresente(personneCorrespondante)){
-                                    Serial.println("La personne est presente dans l'autre piece");
-                                    appt[1-i].personneSort(personneCorrespondante, &leds);
+                            if (appt[i].getNbPersonnesPresentes() == 0){
+                                if (appt[i-1].getNbPersonnesPresentes() != 0){
+                                  appt[1 - i].personneSort(personneCorrespondante, &leds);
+                                  Serial.println("Sortie 1");
                                 }
-
-                                // Entrée de la personne dans la pièce actuelle
+                                Serial.println("La pièce est vide, la personne entre");
                                 appt[i].personneEntre(personneCorrespondante, &leds);
-
-                            } else { // Si la personne était déjà présente, elle sort de la pièce
+                            } else {
+                              if (appt[i-1].getNbPersonnesPresentes() != 0){
+                                appt[1 - i].personneSort(personneCorrespondante, &leds);
+                                Serial.println("Sortie 1");
+                              }
                                 appt[i].personneSort(personneCorrespondante, &leds);
+                                Serial.println("Sortie 2");
+                                appt[i].personneEntre(personneCorrespondante, &leds);
+                                Serial.println("Entrée");
                             }
+                          
+                            // // Si la personne n'était pas déjà dans la pièce
+                            // if (!appt[i].personnePresente(personneCorrespondante)){
+                            //   Serial.println("La personne n'est pas présente dans la piece du numpad");
+
+                            //     // Si la personne était dans l'autre pièce, alors elle en sort
+                            //     if (appt[1-i].personnePresente(personneCorrespondante)){
+                            //         Serial.println("La personne est presente dans l'autre piece");
+                            //         appt[1-i].personneSort(personneCorrespondante, &leds);
+                            //     }
+
+                            //     // Entrée de la personne dans la pièce actuelle
+                            //     appt[i].personneEntre(personneCorrespondante, &leds);
+
+                            // } else { // Si la personne était déjà présente, elle sort de la pièce
+                            //     appt[i].personneSort(personneCorrespondante, &leds);
+                            // }
 
 
                         // Sinon, on reset le code
@@ -169,6 +188,11 @@ void Principal::loop(){
             appt[i].getNumpad()->resetNbEtoiles();
             leds.setColorRGB(1-(i-1), 0, 0, 0);
         }
+
+        // SELECTION DU MODE:
+        // 1 : séquence
+        // 2 : touche du numpad --> couleur
+        // 3 : on peut faire rentrer des personnes à la main
     }
 }
 

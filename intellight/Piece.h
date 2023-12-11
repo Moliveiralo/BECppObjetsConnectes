@@ -32,7 +32,7 @@ private :
     short R, G, B;
 
     // Nombre de personnes presentes dans la piece
-    short nbPersonnesPresentes = 0;
+    short nbPersonnesPresentes;
     bool personnePrioPresente = false;
 
     // Liste de personnes presentes dans la pièce
