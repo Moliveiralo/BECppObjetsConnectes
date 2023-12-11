@@ -193,6 +193,7 @@ void Principal::loop(){
         // 1 : séquence
         // 2 : touche du numpad --> couleur
         // 3 : on peut faire rentrer des personnes à la main
+        // **** : disco
     }
 }
 
