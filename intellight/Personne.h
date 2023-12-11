@@ -83,6 +83,10 @@ public:
 
     /* Fonctions amies */
     friend Personne getPersonne(short code); // Permet de récupérer une personne dont le code correspond à celui entré en paramètre. Si aucune ne correspond, une personne 'vide' dont le nom est "NULL" est retournée.
+
+
+    /* Surcharge d'opérateurs */
+    bool operator==(const Personne& autrePersonne) const; // Comparaison de deux personnes, basées sur l'id qui est unique pour chaque personne
 };
 
 

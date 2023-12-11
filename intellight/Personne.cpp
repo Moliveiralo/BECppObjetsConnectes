@@ -206,3 +206,9 @@ bool Personne::verifierCode(short c){
 short Personne::getNbPersonnes() {
     return nbPersonnes;
 }
+
+
+/* ---------- Surcharge d'opérateurs: ---------- */
+bool Personne::operator==(const Personne& autrePersonne) const{
+    return this->getId() == autrePersonne.getId();
+}
