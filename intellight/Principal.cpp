@@ -68,8 +68,6 @@ void Principal::loop(){
             // On récupère la touche qui est appuyée sur le numpad
             char touche = appt[i].getNumpad()->getTouche();
 
-            Serial.println(touche);
-
             switch(touche){
                 case '*': // Si la touche appuyée est étoile, alors on incrémente le nombre de fois ou étoiles a été tapé
                     appt[i].getNumpad()->incrNbEtoiles();
@@ -128,18 +126,20 @@ void Principal::loop(){
                         appt[i].getNumpad()->resetCode();
                     }
                     break;
-
-
                 default: // Si l'utilisateur a appuyé sur un chiffre
+                    Serial.println("\nDigits:");
+                    Serial.println(appt[i].getNumpad()->getNbDigits());
+                    Serial.println("");
                     // Tant que le code n'est pas complet, on rajoute le digit au code.
                     if (appt[i].getNumpad()->getNbDigits() < 4){
-                        appt[i].getNumpad()->addDigitToCode((short) touche);
+                        appt[i].getNumpad()->addDigitToCode(touche);
                     }
 
                     // Si le code était déjà complet et que l'on appuie à nouveau sur un chiffre, on reset le code et on ajoute le nouveau digit au code
-                    if (appt[i].getNumpad()->getNbDigits() >= 4){
+                    if (appt[i].getNumpad()->getNbDigits() >= 5){
+                        Serial.println(appt[i].getNumpad()->getCode());
                         appt[i].getNumpad()->resetCode();
-                        appt[i].getNumpad()->addDigitToCode((short) touche);
+                        appt[i].getNumpad()->addDigitToCode(touche);
                     }
                     break;
             }

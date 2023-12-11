@@ -43,7 +43,7 @@ public:
     short getNbEtoiles() const;
 
     // Autres méthodes
-    void addDigitToCode(short digit);
+    void addDigitToCode(char digit);
     void resetNbEtoiles();
     void incrNbEtoiles();
     void resetCode();

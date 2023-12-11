@@ -82,11 +82,53 @@ void Numpad::updateData() {
   data = mySerial->read();
 }
 
-void Numpad::addDigitToCode(short digit){
-    if (nbDigits != 4){
-        code[nbDigits] = digit;
-        nbDigits++;
+void Numpad::addDigitToCode(char digit){
+    switch (digit) {
+        case '1':
+            code[nbDigits] = 1;
+            nbDigits++;
+            break;
+        case '2':
+            code[nbDigits] = 2;
+            nbDigits++;
+            break;
+        case '3':
+            code[nbDigits] = 3;
+            nbDigits++;
+            break;
+        case '4':
+            code[nbDigits] = 4;
+            nbDigits++;
+            break;
+        case '5':
+            code[nbDigits] = 5;
+            nbDigits++;
+            break;
+        case '6':
+            code[nbDigits] = 6;
+            nbDigits++;
+            break;
+        case '7':
+            code[nbDigits] = 7;
+            nbDigits++;
+            break;
+        case '8':
+            code[nbDigits] = 8;
+            nbDigits++;
+            break;
+        case '9':
+            code[nbDigits] = 9;
+            nbDigits++;
+            break;
+        case '0':
+            code[nbDigits] = 0;
+            nbDigits++;
+            break;
+        default:
+            break;
     }
+    Serial.println("Digit ajouté:");
+    Serial.println(code[nbDigits-1]);
 }
 
 void Numpad::resetNbEtoiles(){
