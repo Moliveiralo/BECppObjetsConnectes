@@ -100,9 +100,22 @@ void Principal::loop(){
 
                         // Si une personne correspondante existe
                         if (personneCorrespondante->getUsername() != "NULL"){
-                            appt[i].personneSort(personneCorrespondante, &leds);
-                            appt[1-i].personneSort(personneCorrespondante, &leds);
-                            appt[i].personneEntre(personneCorrespondante, &leds);
+                            // Si la personne n'était pas déjà dans la pièce
+                            if (!appt[i].personnePresente(personneCorrespondante)){
+                              Serial.println("La personne n'est pas présente dans la piece du numpad");
+
+                                // Si la personne était dans l'autre pièce, alors elle en sort
+                                if (appt[1-i].personnePresente(personneCorrespondante)){
+                                    Serial.println("La personne est presente dans l'autre piece");
+                                    appt[1-i].personneSort(personneCorrespondante, &leds);
+                                }
+
+                                // Entrée de la personne dans la pièce actuelle
+                                appt[i].personneEntre(personneCorrespondante, &leds);
+
+                            } else { // Si la personne était déjà présente, elle sort de la pièce
+                                appt[i].personneSort(personneCorrespondante, &leds);
+                            }
 
 
                         // Sinon, on reset le code
