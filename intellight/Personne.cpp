@@ -53,9 +53,6 @@ Personne::Personne(const String& us_name) {
     R = 255;
     G = 255;
     B = 255;
-
-    // On ajoute la personne à la liste de personnes
-//    listePersonne.push_back(this);
 }
 
 Personne::Personne(const String& us_name, bool estAdmin, bool estVisiteur){
@@ -76,9 +73,6 @@ Personne::Personne(const String& us_name, bool estAdmin, bool estVisiteur){
     R = 255;
     G = 255;
     B = 255;
-
-    // On ajoute la personne à la liste de personnes
-//    listePersonne.push_back(this);
 }
 
 Personne::Personne(const String& us_name, bool estAdmin, bool estVisiteur, short c){
@@ -99,9 +93,6 @@ Personne::Personne(const String& us_name, bool estAdmin, bool estVisiteur, short
     R = 255;
     G = 255;
     B = 255;
-
-    // On ajoute la personne à la liste de personnes
-//    listePersonne.push_back(this);
 }
 
 

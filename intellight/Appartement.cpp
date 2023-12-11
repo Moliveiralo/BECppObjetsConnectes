@@ -31,7 +31,7 @@ short Appartement::getNbPiece() const {
     return nbPiece;
 }
 
-short Appartement::getNbAppartements() const {
+short Appartement::getNbAppartements() {
     return nbAppartement;
 }
 
@@ -54,6 +54,25 @@ void Appartement::retirerPiece(short pieceId) {
             nbPiece--;
         }
         itPiece++;
+    }
+}
+
+void Appartement::ajouterPersonne(Personne *p) {
+    listePersonnesExistantes.push_back(p);
+}
+
+void Appartement::retirerPersonne(short id){
+    bool personneEffacee = false;
+
+    itPersonnesExistantes=listePersonnesExistantes.begin();
+    while (not(personneEffacee) && (itPersonnesExistantes!=listePersonnesExistantes.end())){
+        Personne * personneActuelle = *itPersonnesExistantes;
+        short testId = personneActuelle->getId();
+        if (testId == id){
+            personneEffacee=true;
+            listePersonnesExistantes.erase(itPersonnesExistantes);
+        }
+        itPersonnesExistantes++;
     }
 }
 
