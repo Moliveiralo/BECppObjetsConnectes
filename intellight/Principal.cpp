@@ -72,15 +72,54 @@ void Principal::loop(){
 
                 case '1':{ // Séquence prédéfinie
                     // +habitant1
+                    appt[1].personneEntre(habitant1, &leds);
+
+                    delay(2000);
+
                     // +habitant2 (rien)
+                    appt[1].personneEntre(habitant2, &leds);
+
+                    delay(2000);
+
                     // -habitant1 (hab2 lum)
+                    appt[1].personneSort(habitant1, &leds);
+
+                    delay(2000);
+
                     // +habitant1 pièce 2
+                    appt[2].personneEntre(habitant1, &leds);
+
+                    delay(2000);
+
                     // +habitantPrio
+                    appt[1].personneEntre(habitantPrio, &leds);
+
+                    delay(2000);
+
                     // -habitantPrio
+                    appt[1].personneSort(habitantPrio, &leds);
+
+                    delay(2000);
+
                     // -habitant 2
+                    appt[1].personneSort(habitant2, &leds);
+
+                    delay(2000);
+
                     // +invite pièce 2
+                    appt[2].personneEntre(invite, &leds);
+
+                    delay(2000);
+
                     // -invite pièce 2
+                    appt[2].personneSort(invite, &leds);
+
+                    delay(2000);
+
                     // - habitant1 pièce 2
+                    appt[2].personneSort(invite, &leds);
+
+                    delay(5000);
                     break;
                 }
 
