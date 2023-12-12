@@ -142,3 +142,9 @@ void Numpad::resetCode(){
     delete code;
     code = new short[4];
 }
+
+Numpad::~Numpad(){
+    delete [] mySerial; // Suppression de l'UART émulé
+    delete [] code; // Suppression du tableau contenant les digits du code
+
+}
