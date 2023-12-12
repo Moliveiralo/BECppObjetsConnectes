@@ -23,6 +23,8 @@ private :
     list<Piece> listePieces;
     list<Piece>::iterator itPiece;
 
+    // Nous avions des erreurs à la compilation causees par cette liste que l'on a pas reussit a corriger
+    // Nous avons tout de meme laisse tout ce que nous avions code pour cette liste et l'avons commente
 //    // Liste des personnes existantes
 //    static list<Personne> listePersonnesExistantes;
 //    static list<Personne>::iterator itPersonnesExistantes;
