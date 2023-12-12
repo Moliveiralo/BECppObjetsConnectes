@@ -102,7 +102,7 @@ void Piece::personneEntre(Personne* nouvellePersonne, ChainableLED *leds){
     }
 
 
-    // Si la personne n'est pas prioritaire et n'est pas un visiteur,
+    // Si la personne n'est pas prioritaire et n'est pas un invite,
     // et s'il n'y a pas deja une personne prioritaire dans la piece,
     // on change les caracteriques de la lumiere avec les preferences de la premiere personne
     else if (!(nouvellePersonne->getEstVisiteur()) && !(personnePrioPresente)){
@@ -165,6 +165,7 @@ bool Piece::personnePresente(Personne * p){
 
     Serial.println(nbPersonnesPresentes);
 
+    // Si la pièce est vide, on sait d'office que la personne n'est pas présente. On ne commence pas la recherche.
     if (nbPersonnesPresentes == 0){
         Serial.println("La piece est vide, on retourne false");
         return false;

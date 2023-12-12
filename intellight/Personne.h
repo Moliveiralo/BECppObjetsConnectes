@@ -25,7 +25,7 @@ private:
     String username; // Nom d'utilisateur ou sinon le prénom/nom de la personne
     bool isHere; // Statut de présence de l'utilisateur dans le domicile
     bool admin; // Vrai si la personne est administrateur
-    bool visiteur; // Vrai si la personne est visiteur
+    bool visiteur; // Vrai si la personne est invite
 
     /* Données de préférence de l'utilisateur */
     float lightIntensity; // Intensité lumineuse en pourcentage. Cette variable est comprise entre 0.0% et 100.0%.
@@ -35,8 +35,8 @@ public:
     /* Constructeurs */
     Personne(); // Constructeur vide, utilisé par la méthode getPersonneFromCode() si aucune personne n'a été trouvée
     Personne(const String& us_name); // Création d'une personne à partir de son nom uniquement
-    Personne(const String& us_name, bool estAdmin, bool estVisiteur); // Création d'une personne avec son nom tout en désignant si elle est admin ou visiteur
-    Personne(const String& us_name, bool estAdmin, bool estVisiteur, short c); // Création d'une personne avec son nom tout en désignant si elle est admin ou visiteur et en spécifiant son code sur les numpads
+    Personne(const String& us_name, bool estAdmin, bool estVisiteur); // Création d'une personne avec son nom tout en désignant si elle est admin ou invite
+    Personne(const String& us_name, bool estAdmin, bool estVisiteur, short c); // Création d'une personne avec son nom tout en désignant si elle est admin ou invite et en spécifiant son code sur les numpads
 
 
     /* Méthodes */
@@ -50,7 +50,7 @@ public:
     short getLightIntensity() const; // Permet de récupérer la préférence de la personne concernant l'intensité lumineuse
     short * getLightPreferences() const; // Permet de récupérer l'ensemble des préférences de la personne en termes de lumière
     bool getEstAdmin() const; // Permet de savoir si la personne est admin
-    bool getEstVisiteur() const; // Permet de savoir si la personne est visiteur
+    bool getEstVisiteur() const; // Permet de savoir si la personne est invite
 
 
     // Setters

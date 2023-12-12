@@ -22,7 +22,7 @@ Personne::Personne() {
     // On définit le code de l'utilisateur sur les numpads
     code = -1;
 
-    // Par défaut, la personne n'est ni un visiteur, ni un administrateur
+    // Par défaut, la personne n'est ni un invite, ni un administrateur
     admin = false;
     visiteur = false;
 
@@ -44,7 +44,7 @@ Personne::Personne(const String& us_name) {
     // On définit le code de l'utilisateur sur les numpads
     code = -1;
 
-    // Par défaut, la personne n'est ni un visiteur, ni un administrateur
+    // Par défaut, la personne n'est ni un invite, ni un administrateur
     admin = false;
     visiteur = false;
 

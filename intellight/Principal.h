@@ -45,24 +45,24 @@ private:
     Appartement appt;
 
     // Creation des personnes qui peuvent gerer les lumieres de l'appartement
-    // Deux habitants classiques 
-    Personne * habitant1;
-    Personne * habitant2;
-    // Un habitant prioritaire
-    Personne * habitantPrio;
-    // Un visiteur 
-    Personne * visiteur;
+    Personne * habitant1; // Deux habitants classiques
+    Personne * habitant2; // Deux habitants classiques
+    Personne * habitantPrio; // Un habitant prioritaire
+    Personne * invite; // Un invité
 
 
+    // Pointeurs vers les UART émulés pour le numpad 1 et 2
     SoftwareSerial * mySerial, * mySerial2;
+
+    // Pointeurs
     Numpad * numpad1,* numpad2;
 
-    short * codeNumpad1, * codeNumpad2;
+    // Variables utilisées pour le mode disco
+    float hue; // Valeur de la hue de la lumière
+    boolean up; // Tendance de hue (montant 0-->1 ou descendant 1-->0)
 
-    short * nbDigits;
-
-    boolean up;
-    float hue;
+    // Pour notre test en mode dégradé
+    char * modeNumpad;
 
 
 public:
