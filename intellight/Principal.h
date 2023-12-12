@@ -39,7 +39,7 @@ private:
     /************* Attributs *************/
     // Leds chainees : 1 led par piece
     short nbLeds; // Nombre de leds = nombre de pieces
-    ChainableLED leds;
+    ChainableLED leds; // Objet incarnant les LEDs
 
     // Attribut relatif à l'appartement
     Appartement appt;
@@ -54,7 +54,7 @@ private:
     // Pointeurs vers les UART émulés pour le numpad 1 et 2
     SoftwareSerial * mySerial, * mySerial2;
 
-    // Pointeurs
+    // Pointeurs vers les numpads de chaque pièce
     Numpad * numpad1,* numpad2;
 
     // Variables utilisées pour le mode disco
