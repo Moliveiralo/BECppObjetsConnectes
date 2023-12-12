@@ -62,7 +62,9 @@ private:
     boolean up; // Tendance de hue (montant 0-->1 ou descendant 1-->0)
 
     // Pour notre test en mode dégradé
-    char * modeNumpad;
+    bool quitterModeSequence; // Vaut vrai si on souhaite quitter le mode séquence
+    bool quitterModeCouleur; // Vaut vrai si on souhaite quitter le mode couleur
+    bool premiereFois; // Vaut vrai si c'est la première itération de la boucle du mode couleur. Permet de ne pas spammer le serial avec le message de lancement du mode.
 
 
 public:
