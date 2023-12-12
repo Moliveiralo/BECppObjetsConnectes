@@ -14,10 +14,10 @@ short Personne::nbPersonnes = 0; // Initialisation du nombre de personnes initia
 
 /* ---------- Constructeurs: ---------- */
 Personne::Personne() {
-    nbPersonnes++;
-    id = nbPersonnes;
-    username = "NULL";
-    isHere = false;
+    nbPersonnes++; // On incrémente le nombre total de personnes existantes
+    id = nbPersonnes; // On définit l'id unique de la personne
+    username = "NULL"; // Affectation d'un nom par défaut
+    isHere = false; // Par défaut, la personne n'est pas présente dans l'appartement
 
     // On définit le code de l'utilisateur sur les numpads
     code = -1;
@@ -36,10 +36,10 @@ Personne::Personne() {
 }
 
 Personne::Personne(const String& us_name) {
-    nbPersonnes++;
-    id = nbPersonnes;
-    username = us_name;
-    isHere = false;
+    nbPersonnes++; // On incrémente le nombre total de personnes existantes
+    id = nbPersonnes; // On définit l'id unique de la personne
+    username = us_name; // Affectation du nom
+    isHere = false; // Par défaut, la personne n'est pas présente dans l'appartement
 
     // On définit le code de l'utilisateur sur les numpads
     code = -1;
@@ -56,10 +56,10 @@ Personne::Personne(const String& us_name) {
 }
 
 Personne::Personne(const String& us_name, bool estAdmin, bool estVisiteur){
-    nbPersonnes++;
-    id = nbPersonnes;
-    username = us_name;
-    isHere = false;
+    nbPersonnes++; // On incrémente le nombre total de personnes existantes
+    id = nbPersonnes; // On définit l'id unique de la personne
+    username = us_name; // Affectation du nom
+    isHere = false; // Par défaut, la personne n'est pas présente dans l'appartement
 
     // On définit le code de l'utilisateur sur les numpads
     code = -1;
@@ -76,10 +76,10 @@ Personne::Personne(const String& us_name, bool estAdmin, bool estVisiteur){
 }
 
 Personne::Personne(const String& us_name, bool estAdmin, bool estVisiteur, short c){
-    nbPersonnes++;
-    id = nbPersonnes;
-    username = us_name;
-    isHere = false;
+    nbPersonnes++; // On incrémente le nombre total de personnes existantes
+    id = nbPersonnes; // On définit l'id unique de la personne
+    username = us_name; // Affectation du nom
+    isHere = false; // Par défaut, la personne n'est pas présente dans l'appartement
 
     // On définit le code de l'utilisateur sur les numpads
     code = c;
@@ -127,6 +127,10 @@ short Personne::getLightIntensity() const{
 
 short * Personne::getLightPreferences() const{
     short * tabPref = new short[3];
+
+    // Les préférences sont modulées par l'intensité lumineuse
+    // Ex: je veux du rouge (255, 0, 0) à 50% d'intensité lumineuse
+    // --> (127, 0, 0) donc du rouge mais moins lumineux
     tabPref[0] = (short) ((lightIntensity/100)* (float) R);
     tabPref[1] = (short) ((lightIntensity/100)* (float) G);
     tabPref[2] = (short) ((lightIntensity/100)* (float) B);
@@ -187,7 +191,7 @@ void Personne::setCode(short c){
 
 /* ---------- Autres méthodes: ---------- */
 bool Personne::verifierCode(short c){
-    return (c == code);
+    return (c == code); // Pour ne pas accéder de manière directe au code, on compare le code en paramètre à celui de l'utilisateur
 }
 
 
@@ -200,5 +204,11 @@ short Personne::getNbPersonnes() {
 
 /* ---------- Surcharge d'opérateurs: ---------- */
 bool Personne::operator==(const Personne& autrePersonne) const{
-    return this->getId() == autrePersonne.getId();
+    return this->getId() == autrePersonne.getId(); // Comme les id sont uniques, on les compare pour savoir si c'est la même personne
+}
+
+
+/* ---------- Destructeur: ---------- */
+Personne::~Personne(){
+    // On n'a aucun pointeur à delete
 }

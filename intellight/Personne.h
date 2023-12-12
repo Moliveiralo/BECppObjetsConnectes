@@ -74,7 +74,7 @@ public:
 
 
     // Destructeurs
-    ~Personne() = default; // Destructeur de personne
+    ~Personne(); // Destructeur de personne
 
 
 
