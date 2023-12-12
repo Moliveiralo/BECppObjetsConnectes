@@ -28,7 +28,7 @@ private :
 //    static list<Personne>::iterator itPersonnesExistantes;
 
     /*Variable de classe*/
-    static short nbAppartement;
+    static short nbAppartement; // Nombre d'appartements
 
 public :
 
@@ -46,8 +46,8 @@ public :
     // Relatives à la liste de pieces
     void ajouterPiece(const String& nom, Numpad * npad); // Permet de creer une nouvelle piece dans un appartement
     void retirerPiece (short pieceId); // Retire une piece de l'appartement
-//    static void ajouterPersonne(Personne p);
-//    static void retirerPersonne(short id);
+//    static void ajouterPersonne(Personne p); // Ajouter une personne a la liste
+//    static void retirerPersonne(short id); // Retirer une personne de la liste
 //    Personne getPersonneFromCode(short code); // Permet de récupérer une personne dont le code correspond à celui entré en paramètre. Si aucune ne correspond, une personne 'vide' dont le nom est "NULL" est retournée
 
 
@@ -59,7 +59,7 @@ public :
 
 
     /************* Destructeur *************/
-
+    ~Appartement();
 };
 
 
