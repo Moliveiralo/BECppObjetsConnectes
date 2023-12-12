@@ -36,19 +36,25 @@ short Appartement::getNbAppartements() {
 }
 
 // Autres methodes
+// Lorsqu'on appelle cette fonction, une piece est cree et placee dans la liste de pieces
 void Appartement::ajouterPiece(const String& nom, Numpad * npad) {
     nbPiece++;
+    // Creation de la piece
     Piece nvllePiece(nom, nbPiece, npad);
+    // Ajout de la liste a la liste de pieces
     listePieces.push_back(nvllePiece);
 }
 
+// On retire la piece dont l'identifiant est passe en argument de la liste de piece
 void Appartement::retirerPiece(short pieceId) {
     bool pieceEffacee = false;
 
     itPiece=listePieces.begin();
     while (not(pieceEffacee) && (itPiece!=listePieces.end())){
         short testId = itPiece->getId();
+        // Si l'id de la piece pointee correspond a celui de la piece pointee,
         if (testId == pieceId){
+            // On l'efface de la liste
             pieceEffacee=true;
             listePieces.erase(itPiece);
             nbPiece--;
@@ -109,11 +115,22 @@ Piece & Appartement::operator[] (int indice){
     itPiece=listePieces.begin();
     while (not(pieceTrouvee) && (itPiece!=listePieces.end())){
         short testId = itPiece->getId();
+        // Si l'id de la piece pointee correspond a celui de la piece pointee,
         if (testId == indice){
             pieceTrouvee=true;
             break;
+            // On sort de la boucle
         }
         itPiece++;
     }
+    // et on retroune la valeur de l'iterateur qui pointee cette meme piece
     return *itPiece;
+}
+
+/************* Destructeur *************/
+Appartement::~Appartement(){
+    // On efface entierement la liste de pieces
+    listePieces.clear();
+    // On efface entierement la liste de personnes
+    //listePersonnesExistantes.clear();
 }
