@@ -33,14 +33,14 @@ Le montage global est résumé sur le schéma ci-dessous:
 Le code est prêt à être implémenté. 
 
 ### **Comment intéragir ?**
-Une fois le code implémenté sur la carte, chosir le mode de test en appuyant sur la touche correspondante:
-1) touche 1 du NUMPAD : séquence automatique d'entrée et sortie des personnes.
-2) touche 2 du NUMPAD : chaque touche d'une NUMPAD correspond à une couleur de LED pour la pièce associée.
-3) appauyer sur la touche 3 du NUMPAD : mode "libre" --> on rentre un code sur le NUMPAD pour faire rentrer une personne dans la pièce. Voici les codes : 
+Une fois le code implémenté sur la carte, 3 modes vont s'enchainer à la suite. Il faut ouvrir le serial monitor où s'afficheront diverses informations telles que le mode en cours.
+1) Séquence automatique d'entrée et sortie des personnes.
+2) Chaque touche d'une NUMPAD correspond à une couleur de LED pour la pièce associée. La touche "#" permet de sortir de ce mode et de passer au mode suivant. 
+3) Mode "libre" --> on rentre un code sur le NUMPAD pour faire rentrer une personne dans la pièce. Voici les codes : 
    - **** : mode disco, pour arrêter le mode disco on réappuie sur *
    - 1234 : habitant 1, couleur associée : violet
    - 1793 : habitant 2, couleur associée : jaune
    - 8520 : administrateur (habitant prioritaire), couleur associée : vert
    - 4785 : invité, couleur associée : blanc 
-
-Si on veut changer de mode, il faut faut appuyer sur le bouton de reset de la carte Arduino. 
+Ce dernier mode est dégradé : on ne peut pas faire sortir une personne d'une pièce. Si on change une personne de piece, une exception va donc se lever. 
+Si on veut repartir au début (séquence automatique) il faut appuyer sur le bouton reset de la carte. 
