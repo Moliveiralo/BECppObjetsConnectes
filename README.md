@@ -42,5 +42,7 @@ Une fois le code implémenté sur la carte, 3 modes vont s'enchainer à la suite
    - 1793 : habitant 2, couleur associée : jaune
    - 8520 : administrateur (habitant prioritaire), couleur associée : vert
    - 4785 : invité, couleur associée : blanc 
-Ce dernier mode est dégradé : on ne peut pas faire sortir une personne d'une pièce. Si on change une personne de piece, une exception va donc se lever. 
+
+Ce dernier mode est dégradé : on ne peut pas faire sortir une personne d'une pièce.Si on change une personne de piece, une exception va donc se lever. 
+
 Si on veut repartir au début (séquence automatique) il faut appuyer sur le bouton reset de la carte. 
