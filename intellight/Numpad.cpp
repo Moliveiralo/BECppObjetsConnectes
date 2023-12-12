@@ -5,29 +5,29 @@
 #include "Numpad.h"
 
 Numpad::Numpad() {
-    data = 0;
-    mySerial = nullptr;
-    code = new short[4];
-    nbDigits = 0;
-    nbEtoiles = 0;
+    data = 0; // Initialement, le numpad n'a pas encore renvoyé de valeur.
+    mySerial = nullptr; // Aucun UART n'est associé au numpad
+    code = new short[4]; // On crée le code en tant que tableau de digits
+    nbDigits = 0; // Initialement, le code ne contient aucun digit
+    nbEtoiles = 0; // Initialement, on n'a tapé aucune étoile au clavier
 }
 
 Numpad::Numpad(SoftwareSerial * s){
-    mySerial = s;
-    data = 0;
-    code = new short[4];
-    nbDigits = 0;
-    nbEtoiles = 0;
+    mySerial = s; // On associe l'UART entrée en paramètre au numpad
+    data = 0; // Initialement, le numpad n'a pas encore renvoyé de valeur.
+    code = new short[4]; // On crée le code en tant que tableau de digits
+    nbDigits = 0; // Initialement, le code ne contient aucun digit
+    nbEtoiles = 0; // Initialement, on n'a tapé aucune étoile au clavier
 }
 
 uint8_t Numpad::getData() {
-  updateData();
+  updateData(); // On rafraichit l'attribut data contenant le code correspondant à la touche appuyée sur le numpad
   return data;
 }
 
 char Numpad::getTouche(){
   while (mySerial->available()){
-    switch(getData()) {
+    switch(getData()) { // En fonction de la touche appuyée sur le numpad
                 case 0xE1 : // TOUCHE 1
                     return '1';
                 case 0xE2 : // TOUCHE 2
@@ -60,9 +60,9 @@ char Numpad::getTouche(){
 }
 
 short Numpad::getCode() const{
-    if (nbDigits == 4){
+    if (nbDigits == 4){ // Si le code contient bien 4 digits, on retourne le code
         return (code[0]*1000 + code[1]*100 + code[2]*10 + code[3]);
-    } else {
+    } else { // Sinon, on retourne -1
         return -1;
     }
 }
@@ -79,11 +79,11 @@ SoftwareSerial * Numpad::getSerial(){
 }
 
 void Numpad::updateData() {
-  data = mySerial->read();
+  data = mySerial->read(); // Lecture de data à partir de l'UART émulé
 }
 
 void Numpad::addDigitToCode(char digit){
-    switch (digit) {
+    switch (digit) { // Pour chaque chiffre, on ajoute le chiffre au code et on incrémente le nombre de digits contenus dans le code
         case '1':
             code[nbDigits] = 1;
             nbDigits++;
@@ -138,9 +138,9 @@ void Numpad::incrNbEtoiles(){
 }
 
 void Numpad::resetCode(){
-    nbDigits = 0;
-    delete code;
-    code = new short[4];
+    nbDigits = 0; // Remise à zéro du nombre de digits
+    delete [] code; // Suppression du code et libération de la mémoire
+    code = new short[4]; // On recrée un code de zéro sur un nouvel espace mémoire
 }
 
 Numpad::~Numpad(){
