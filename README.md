@@ -16,7 +16,8 @@ Lorsqu'un habitant entre dans le domicile, les lumières de la pièce s'allument
 
 ## Instructions
 ### **Comment compiler ?**
-blabla
+Ouvrir intellight.ino dans le dossier intellight. 
+Compiler ce document.
 
 ### **Comment exécuter ?**
 1) Brancher les pinpads comme suit:
@@ -27,8 +28,15 @@ blabla
 
 ![image](https://github.com/Moliveiralo/BECppObjetsConnectes/assets/133717115/3703471c-14ca-402b-867a-5df25019ad17)
 
-### **Comment intéragir ?**
+Le code est prêt à être implémenté. 
 
+### **Comment intéragir ?**
+Une fois le code implémenté sur la carte, chosir le mode de test :
+1) appuyer sur la touche 1 du NUMPAD : séquence automatique d'entrée et sortie des personnes 
+2) appuyer sur la touche 2 du NUMPAD : 
+3) appauyer sur la touche 3 du NUMPAD : 
+
+Si on veut changer de mode, il faut faut appuyer sur le bouton de reset de la carte Arduino. 
 
 
 ## Classes:
