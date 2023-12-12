@@ -19,14 +19,16 @@ Lorsqu'un habitant entre dans le domicile, les lumières de la pièce s'allument
 Ouvrir intellight.ino dans le dossier intellight. 
 Compiler ce document.
 
-### **Comment exécuter ?**
+### **Comment réaliser le montage ?**
 1) Brancher les pinpads comme suit:
 --> **NUMPAD 1**: D1 D2
 --> **NUMPAD 2**: D5 D6
 2) Brancher les leds comme suit:
 --> **LEDS RGB en série**: D7 D8
 
-![image](https://github.com/Moliveiralo/BECppObjetsConnectes/assets/133717115/3703471c-14ca-402b-867a-5df25019ad17)
+Le montage global est résumé sur le schéma ci-dessous:
+
+![image](https://github.com/Moliveiralo/IntelLight--OLIVEIRA-LOPES-Maxime--NAJI-Ines/assets/133717115/d423b9ec-6c02-49a0-b3fa-7fc06da8e15b)
 
 Le code est prêt à être implémenté. 
 
