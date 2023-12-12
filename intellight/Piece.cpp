@@ -60,12 +60,19 @@ list<Personne*> Piece::getListPersonnesPresentes() const{
     return listePersonnesPresentes;
 }
 
+Numpad *Piece::getNumpad() {
+    return numpad;
+}
+
 // Autres methodes
 void Piece::allumerLumiere (short r, short g, short b, ChainableLED *leds){
     // On allume la lumiere dans la piece
     ledAllumee=true;
     // Et on definit les caracteristiques des lumieres de cette piece
     R=r ; G=g; B=b;
+
+    // La fonction suivante permet de definir les parametres R, G,B des leds
+    // et ainsi allumer la led avec ces mêmes paramètres
     leds->setColorRGB(1-(id-1), R, G, B);
 }
 
@@ -74,6 +81,8 @@ void Piece::eteindreLumiere (ChainableLED *leds){
     ledAllumee=false;
     // On remet les caracteristiques de la lumiere a 0
     R=0; G=0; B=0;
+    // La fonction suivante permet de definir les parametres R, G,B des leds
+    // et ainsi allumer la led avec ces mêmes paramètres
     leds->setColorRGB(1-(id-1), R, G, B);
 }
 
@@ -98,6 +107,7 @@ void Piece::personneEntre(Personne* nouvellePersonne, ChainableLED *leds){
     // la lumiere prend les caracteristiques de cette personne
     else if (nouvellePersonne->getEstAdmin()){
       changerCaracteristiques(nouvellePersonne->getR(), nouvellePersonne->getG(), nouvellePersonne->getB(), leds);
+      // Ce booleen indique que l'admin est dans la piece
       personnePrioPresente = true;
     }
 
@@ -108,14 +118,12 @@ void Piece::personneEntre(Personne* nouvellePersonne, ChainableLED *leds){
     else if (!(nouvellePersonne->getEstVisiteur()) && !(personnePrioPresente)){
         itPersonnesPresentes = listePersonnesPresentes.begin();
         changerCaracteristiques((*itPersonnesPresentes)->getR(), (*itPersonnesPresentes)->getG(), (*itPersonnesPresentes)->getB(), leds);
-        // GERER QUAND LA PREMIERE PERSONNE DE LA LISTE EST UN VISITEUR
     }
 }
 
 void Piece::personneSort(Personne* personneSortante, ChainableLED *leds){
     bool personneTrouvee = false;
 
-    Serial.println(nbPersonnesPresentes);
     if (nbPersonnesPresentes != 0){
         // On regarde si cette personne etait la personne prioritaire
         // et si c'est le cas on remet le booleen a false
@@ -127,6 +135,8 @@ void Piece::personneSort(Personne* personneSortante, ChainableLED *leds){
         while ((itPersonnesPresentes != listePersonnesPresentes.end()) && !personneTrouvee) {
             short testId = (*itPersonnesPresentes)->getId();
 
+            // Si l'id de la personne qui sort est le même que la personne pointee
+            // par l'iterateur de la liste, on l'efface
             if (testId == personneSortante->getId()) {
                 itPersonnesPresentes = listePersonnesPresentes.erase(itPersonnesPresentes);
                 nbPersonnesPresentes--;
@@ -138,23 +148,20 @@ void Piece::personneSort(Personne* personneSortante, ChainableLED *leds){
             // Si la personne etait seule dans la piece on eteint la lumiere
             if (nbPersonnesPresentes == 0) { eteindreLumiere(leds); }
 
-                // Sinon, s'il n'y a pas de personne prioritaire, on utilise la methode
-                // personne entre avec la premiere personne de la liste
+                // Sinon, s'il n'y a pas de personne prioritaire, on change les
+                // caracteristiques de a lumiere selon les preferences de la personne
             else if (!personnePrioPresente) {
 
                 // On met les caracteriques de la lumiere avec les preferences de la premiere personne de la liste
                 itPersonnesPresentes = listePersonnesPresentes.begin();
                 changerCaracteristiques((*itPersonnesPresentes)->getR(), (*itPersonnesPresentes)->getG(),
                                         (*itPersonnesPresentes)->getB(), leds);
-                // GERER QUAND LA PREMIERE PERSONNE DE LA LISTE EST UN VISITEUR
             }
         }
     }
 }
 
-Numpad *Piece::getNumpad() {
-    return numpad;
-}
+
 
 bool Piece::personnePresente(Personne * p){
     bool personneTrouvee = false; // Initialement, on a pas encore trouvé la personne avec le code correspondant
@@ -192,4 +199,11 @@ bool Piece::personnePresente(Personne * p){
 
     // Si aucune personne n'a le code tapé, alors on retourne une personne "vide" dont le nom est "NULL".
     return personneTrouvee;
+}
+
+
+/************* Destructeur *************/
+Piece::~Piece(){
+    // Dans le destructeur on efface complètement la liste de personnes
+    listePersonnesPresentes.clear();
 }

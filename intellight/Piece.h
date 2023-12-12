@@ -63,11 +63,12 @@ public :
     void allumerLumiere (short r, short g, short b, ChainableLED *leds); // Allume la lumiere avec certaines caracteristiques
     void eteindreLumiere (ChainableLED *leds); // Etient la lumiere et remet a 0 ses caracteristiques
     void changerCaracteristiques (short r, short g, short b, ChainableLED *leds); // Permet de changer les caracteristiques de la lumiere
-    void personneEntre(Personne* nouvellePersonne, ChainableLED *leds); // Rajoute une personne dans la liste des personnes presentes dans la piece
-    void personneSort(Personne* personneSortante, ChainableLED *leds); // Retire une personne de la liste des personnes presentes dans la piece
+    void personneEntre(Personne* nouvellePersonne, ChainableLED *leds); // Une personne entre dans la piece
+    void personneSort(Personne* personneSortante, ChainableLED *leds); // Une personne sort de la piece la piece
     bool personnePresente(Personne * p);
 
     /************* Destructeur *************/
+    ~Piece();
 };
 
 #endif //BECPPOBJETSCONNECTES_PIECE_H
