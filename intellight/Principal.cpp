@@ -70,6 +70,8 @@ void Principal::setup(){
 
 
 void Principal::loop(){
+    delay(5000);
+
     /***** PREMIER MODE : LECTURE D'UNE SEQUENCE *****/
     while (!quitterModeSequence){ // Tant que l'on ne veut pas changer de mode
       Serial.println("Mode Séquence");
@@ -185,137 +187,139 @@ void Principal::loop(){
 
 
     /***** TROISIEME MODE : LIBRE (MODE DEGRADE) *****/
-    // On vérifie pour chaque pièce de l'appartement
-    for(int i=1; i<=appt.getNbPiece(); i++){
+    while(1){
+        // On vérifie pour chaque pièce de l'appartement
+        for(int i=1; i<=appt.getNbPiece(); i++){
 
-        // Tant que l'UART associé au numpad est disponible
-        while(appt[i].getNumpad()->getSerial()->available()){
+            // Tant que l'UART associé au numpad est disponible
+            while(appt[i].getNumpad()->getSerial()->available()){
 
-            // On récupère la touche qui est appuyée sur le numpad
-            char touche = appt[i].getNumpad()->getTouche();
+                // On récupère la touche qui est appuyée sur le numpad
+                char touche = appt[i].getNumpad()->getTouche();
 
-            switch(touche){
-                case '*': // Si la touche appuyée est étoile, alors on incrémente le nombre de fois ou étoiles a été tapé
-                    appt[i].getNumpad()->incrNbEtoiles();
-                    Serial.println("*");
-                    break;
+                switch(touche){
+                    case '*': // Si la touche appuyée est étoile, alors on incrémente le nombre de fois ou étoiles a été tapé
+                        appt[i].getNumpad()->incrNbEtoiles();
+                        Serial.println("*");
+                        break;
 
 
-                case '#':
-                    Serial.println("#");
-                    if (appt[i].getNumpad()->getNbDigits() == 4){
-                        // On cherche une personne dont le code correspond à celui entré sur le numpad
-                        Personne * personneCorrespondante;
+                    case '#':
+                        Serial.println("#");
+                        if (appt[i].getNumpad()->getNbDigits() == 4){
+                            // On cherche une personne dont le code correspond à celui entré sur le numpad
+                            Personne * personneCorrespondante;
 
-                        Serial.println("Code:");
-                        Serial.println(appt[i].getNumpad()->getCode());
-                        // Nous avons eu des soucis avec les listes de personnes dans la classe appartement qui génère une exception
+                            Serial.println("Code:");
+                            Serial.println(appt[i].getNumpad()->getCode());
+                            // Nous avons eu des soucis avec les listes de personnes dans la classe appartement qui génère une exception
 //                        Personne personneCorrespondante = appt.getPersonneFromCode(appt[i].getNumpad()->getCode());
 
-                        if (habitant1->verifierCode(appt[i].getNumpad()->getCode())){
-                            personneCorrespondante = habitant1;
-                            Serial.println("habitant 1 correspond au code tapé");
-                        } else if (habitant2->verifierCode(appt[i].getNumpad()->getCode())){
-                            personneCorrespondante = habitant2;
-                            Serial.println("habitant 2 correspond au code tapé");
-                        } else if (habitantPrio->verifierCode(appt[i].getNumpad()->getCode())){
-                            personneCorrespondante = habitantPrio;
-                            Serial.println("habitant prioritaire correspond au code tapé");
-                        } else if (invite->verifierCode(appt[i].getNumpad()->getCode())){
-                            personneCorrespondante = invite;
-                            Serial.println("invité correspond au code tapé");
-                        } else {
-                            personneCorrespondante = new Personne();
-                            Serial.println("aucune personne ne correspond au code tapé");
-                        }
-                        appt[i].getNumpad()->resetCode();
+                            if (habitant1->verifierCode(appt[i].getNumpad()->getCode())){
+                                personneCorrespondante = habitant1;
+                                Serial.println("habitant 1 correspond au code tapé");
+                            } else if (habitant2->verifierCode(appt[i].getNumpad()->getCode())){
+                                personneCorrespondante = habitant2;
+                                Serial.println("habitant 2 correspond au code tapé");
+                            } else if (habitantPrio->verifierCode(appt[i].getNumpad()->getCode())){
+                                personneCorrespondante = habitantPrio;
+                                Serial.println("habitant prioritaire correspond au code tapé");
+                            } else if (invite->verifierCode(appt[i].getNumpad()->getCode())){
+                                personneCorrespondante = invite;
+                                Serial.println("invité correspond au code tapé");
+                            } else {
+                                personneCorrespondante = new Personne();
+                                Serial.println("aucune personne ne correspond au code tapé");
+                            }
+                            appt[i].getNumpad()->resetCode();
 
-                        // Si une personne correspondante existe
-                        if (personneCorrespondante->getUsername() != "NULL"){
-                            if (appt[i].getNbPersonnesPresentes() == 0){ // Si la pièce est vide, la personne entre directement dans la pièce
-                                if (appt[i-1].getNbPersonnesPresentes() != 0){  // Si l'autre pièce n'est pas vide, on tente de faire sortir la personne de la pièce (si elle n'y était pas, rien ne se passe)
-                                    appt[1 - i].personneSort(personneCorrespondante, &leds);
-                                }
-                                appt[i].personneEntre(personneCorrespondante, &leds);
+                            // Si une personne correspondante existe
+                            if (personneCorrespondante->getUsername() != "NULL"){
+                                if (appt[i].getNbPersonnesPresentes() == 0){ // Si la pièce est vide, la personne entre directement dans la pièce
+                                    // if (appt[i-1].getNbPersonnesPresentes() != 0){  // Si l'autre pièce n'est pas vide, on tente de faire sortir la personne de la pièce (si elle n'y était pas, rien ne se passe)
+                                    //     appt[1 - i].personneSort(personneCorrespondante, &leds);
+                                    // }
+                                    appt[i].personneEntre(personneCorrespondante, &leds);
 
-                            } else { // Si la pièce n'est pas vide
+                                } else { // Si la pièce n'est pas vide
 
-                                if (appt[i-1].getNbPersonnesPresentes() != 0){
-                                    if (appt[1-i].personnePresente(personneCorrespondante)){ // Si l'autre pièce n'est pas vide, on tente de faire sortir la personne de la pièce (si elle n'y était pas, rien ne se passe)
-                                        appt[1-i].personneSort(personneCorrespondante, &leds);
+                                    if (appt[i-1].getNbPersonnesPresentes() != 0){
+                                        // if (appt[1-i].personnePresente(personneCorrespondante)){ // Si l'autre pièce n'est pas vide, on tente de faire sortir la personne de la pièce (si elle n'y était pas, rien ne se passe)
+                                        //     appt[1-i].personneSort(personneCorrespondante, &leds);
+                                        // }
                                     }
+                                    // appt[i].personneSort(personneCorrespondante, &leds); // On tente de faire sortir la personne de la pièce (si elle n'y était pas, rien ne se passe)
+                                    appt[i].personneEntre(personneCorrespondante, &leds); // Enfin, on fait rentrer la personne dans la pièce
                                 }
-                                appt[i].personneSort(personneCorrespondante, &leds); // On tente de faire sortir la personne de la pièce (si elle n'y était pas, rien ne se passe)
-                                appt[i].personneEntre(personneCorrespondante, &leds); // Enfin, on fait rentrer la personne dans la pièce
+
+                                // Fonctionnement initial, ne fonctionne pas car personnePresente ne fonctionne pas.
+                                // // Si la personne n'était pas déjà dans la pièce
+                                // if (!appt[i].personnePresente(personneCorrespondante)){
+                                //   Serial.println("La personne n'est pas présente dans la piece du numpad");
+
+
+
+                                //     // Entrée de la personne dans la pièce actuelle
+                                //     appt[i].personneEntre(personneCorrespondante, &leds);
+
+                                // } else { // Si la personne était déjà présente, elle sort de la pièce
+                                //     appt[i].personneSort(personneCorrespondante, &leds);
+                                // }
+
+
+                                // Sinon, on reset le code
+                            } else {
+                                appt[i].getNumpad()->resetCode();
                             }
 
-                            // Fonctionnement initial, ne fonctionne pas car personnePresente ne fonctionne pas.
-                            // // Si la personne n'était pas déjà dans la pièce
-                            // if (!appt[i].personnePresente(personneCorrespondante)){
-                            //   Serial.println("La personne n'est pas présente dans la piece du numpad");
-
-
-
-                            //     // Entrée de la personne dans la pièce actuelle
-                            //     appt[i].personneEntre(personneCorrespondante, &leds);
-
-                            // } else { // Si la personne était déjà présente, elle sort de la pièce
-                            //     appt[i].personneSort(personneCorrespondante, &leds);
-                            // }
-
-
-                            // Sinon, on reset le code
+                            // Si la personne a appuyé sur # mais qu'il y a moins de 4 digits, alors le code tapé est réinitialisé et l'utilisateur peut recommencer à taper son code.
                         } else {
                             appt[i].getNumpad()->resetCode();
                         }
+                        break;
+                    default: // Si l'utilisateur a appuyé sur un chiffre
+                        Serial.println(touche);
 
-                        // Si la personne a appuyé sur # mais qu'il y a moins de 4 digits, alors le code tapé est réinitialisé et l'utilisateur peut recommencer à taper son code.
-                    } else {
-                        appt[i].getNumpad()->resetCode();
-                    }
-                    break;
-                default: // Si l'utilisateur a appuyé sur un chiffre
-                    Serial.println(touche);
+                        if (appt[i].getNumpad()->getNbDigits() < 4){ // Tant que le code n'est pas complet, on rajoute le digit au code.
+                            appt[i].getNumpad()->addDigitToCode(touche);
+                        }
 
-                    if (appt[i].getNumpad()->getNbDigits() < 4){ // Tant que le code n'est pas complet, on rajoute le digit au code.
-                        appt[i].getNumpad()->addDigitToCode(touche);
-                    }
-
-                    // Si le code était déjà complet et que l'on appuie à nouveau sur un chiffre, on reset le code et on ajoute le nouveau digit au code
-                    if (appt[i].getNumpad()->getNbDigits() >= 5){
-                        Serial.println(appt[i].getNumpad()->getCode());
-                        appt[i].getNumpad()->resetCode();
-                        appt[i].getNumpad()->addDigitToCode(touche);
-                    }
-                    break;
+                        // Si le code était déjà complet et que l'on appuie à nouveau sur un chiffre, on reset le code et on ajoute le nouveau digit au code
+                        if (appt[i].getNumpad()->getNbDigits() >= 5){
+                            Serial.println(appt[i].getNumpad()->getCode());
+                            appt[i].getNumpad()->resetCode();
+                            appt[i].getNumpad()->addDigitToCode(touche);
+                        }
+                        break;
+                }
             }
-        }
 
 
 
 
-        // Gestion de l'easter egg: si l'utilisateur a tapé 4 fois sur étoiles, on active le mode disco !
-        if (appt[i].getNumpad()->getNbEtoiles() == 4){
-            leds.setColorHSL(1-(i-1), hue, 1.0, 0.5);
+            // Gestion de l'easter egg: si l'utilisateur a tapé 4 fois sur étoiles, on active le mode disco !
+            if (appt[i].getNumpad()->getNbEtoiles() == 4){
+                leds.setColorHSL(1-(i-1), hue, 1.0, 0.5);
 
-            delay(25);
+                delay(25);
 
-            if (up) {
-                hue += 0.025;
-            } else {
-                hue -= 0.025;
+                if (up) {
+                    hue += 0.025;
+                } else {
+                    hue -= 0.025;
+                }
+                if (hue >= 1.0 && up) {
+                    up = false;
+                } else if (hue <= 0.0 && !up) {
+                    up = true;
+                }
             }
-            if (hue >= 1.0 && up) {
-                up = false;
-            } else if (hue <= 0.0 && !up) {
-                up = true;
-            }
-        }
 
-        // Si la personne appuie de nouveau sur étoile, l'easter egg est arrêté et le nombre d'étoiles est remis à zéro.
-        if (appt[i].getNumpad()->getNbEtoiles()>4){
-            appt[i].getNumpad()->resetNbEtoiles();
-            leds.setColorRGB(1-(i-1), 0, 0, 0);
+            // Si la personne appuie de nouveau sur étoile, l'easter egg est arrêté et le nombre d'étoiles est remis à zéro.
+            if (appt[i].getNumpad()->getNbEtoiles()>4){
+                appt[i].getNumpad()->resetNbEtoiles();
+                leds.setColorRGB(1-(i-1), 0, 0, 0);
+            }
         }
     }
 }
